@@ -1,1 +1,1 @@
-# CPSC481_Group1_PortfolioII
+# CPSC481 Group1 Portfolio II
