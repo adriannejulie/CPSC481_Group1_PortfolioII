@@ -103,10 +103,12 @@
 </head>
 <body>
 <div class="container">
+
     <div class="header">
         <h1>🏛️ University of Calgary</h1>
-        <button class="back-btn" onclick="history.back()">← Back</button>
+        <button class="back-btn" onclick="goToRequirements()">← Back</button>
     </div>
+
 
     <div id="course-title" class="section-title"></div>
 
@@ -118,7 +120,6 @@
     const course = params.get('course') || 'Unknown Course';
     document.getElementById('course-title').textContent = `Prerequisites for ${course}`;
 
-    // Example data (you can later load dynamically)
     const prereqs = {
         'MATH 275': [
             { code: 'MATH 249', status: 'Completed' },
@@ -128,6 +129,31 @@
             { code: 'ENEL 201', status: 'Completed' },
             { code: 'ENGG 233', status: 'Completed' },
             { code: 'ENGG 225', status: 'Incomplete' }
+        ],
+        'ENME 327': [
+            { code: 'ENEL 301', status: 'Completed' },
+            { code: 'ENME 300', status: 'Completed' }
+        ],
+        'ENME 455': [
+            { code: 'ENEL 255', status: 'Completed'}
+        ],
+        'ENME 527': [
+            { code: 'ENME 455', status: 'Completed'}
+        ],
+        'COST 305': [
+            { code: 'COST 201', status: 'Completed'}
+        ],
+        'COST 412': [
+            { code: 'COST 305', status: 'Completed'}
+        ],
+        'COST 450': [
+            { code: 'COST 412', status: 'Completed'}
+        ],
+        'COST 491': [
+            { code: 'COST 450', status: 'Completed'}
+        ],
+        'COST 510': [
+            { code: 'COST 491', status: 'Completed'}
         ]
     };
 
@@ -145,6 +171,10 @@
         `;
         list.appendChild(div);
     });
+
+    function goToRequirements() {
+        window.location.href = "index.html#requirements-content";
+    }
 </script>
 </body>
 </html>

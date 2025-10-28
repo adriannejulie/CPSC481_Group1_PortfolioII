@@ -262,6 +262,7 @@
         .course-box {
             padding: 12px;
             border-radius: 4px;
+            cursor: pointer;
             text-align: center;
             font-size: 12px;
             font-weight: 600;
@@ -274,6 +275,14 @@
 
         .course-box.red {
             background: #ef9a9a;
+        }
+
+        .course-box.green:hover{
+            background-color: #4caf50;
+        }
+
+         .course-box.red:hover{
+            background-color:#c41e3a;
         }
 
         .elective-item {
@@ -797,7 +806,12 @@
                         <div class="elective-code">ENME 327</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    <div class="elective-status">Completed</div>
+                    
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Completed</div>
+                        <button class="view-btn" onclick="openPrerequisites('ENME 327')">View</button>
+            
+                    </div>
                 </div>
 
                 <div class="elective-item completed">
@@ -805,7 +819,10 @@
                         <div class="elective-code">ENEL 301</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    <div class="elective-status">Completed</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Completed</div>
+                        <button class="view-btn" onclick="openPrerequisites('ENEL 301')">View</button>
+                    </div>
                 </div>
 
                 <div class="elective-item incomplete">
@@ -813,7 +830,10 @@
                         <div class="elective-code">ENME 455</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    <div class="elective-status">Incomplete</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Incomplete</div>
+                        <button class="view-btn" onclick="openPrerequisites('ENME 455')">View</button>
+                    </div>
                 </div>
 
                 <div class="elective-item incomplete">
@@ -821,7 +841,10 @@
                         <div class="elective-code">ENME 527</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    <div class="elective-status">Incomplete</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Incomplete</div>
+                        <button class="view-btn" onclick="openPrerequisites('ENME 527')">View</button>
+                    </div>
                 </div>
 
                 <div class="completion-summary">
@@ -842,7 +865,10 @@
                         <div class="elective-code">TECH 401</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    <div class="elective-status">Incomplete</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Incomplete</div>
+                        <button class="view-btn" onclick="openPrerequisites('TECH 401')">View</button>
+                    </div>
                 </div>
 
                 <div class="elective-item incomplete">
@@ -850,7 +876,10 @@
                         <div class="elective-code">TECH 402</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    <div class="elective-status">Incomplete</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Incomplete</div>
+                        <button class="view-btn" onclick="openPrerequisites('TECH 402')">View</button>
+                    </div>
                 </div>
 
                 <div class="elective-item incomplete">
@@ -858,7 +887,10 @@
                         <div class="elective-code">TECH 403</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    <div class="elective-status">Incomplete</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Incomplete</div>
+                        <button class="view-btn" onclick="openPrerequisites('TECH 403')">View</button>
+                    </div>
                 </div>
 
                 <div class="completion-summary">
@@ -879,7 +911,10 @@
                         <div class="elective-code">COST 201</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    <div class="elective-status">Completed</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Completed</div>
+                        <button class="view-btn" onclick="openPrerequisites('COST 201')">View</button>
+                    </div>
                 </div>
 
                 <div class="elective-item completed">
@@ -887,7 +922,10 @@
                         <div class="elective-code">COST 305</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    <div class="elective-status">Completed</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Completed</div>
+                        <button class="view-btn" onclick="openPrerequisites('COST 305')">View</button>
+                    </div>
                 </div>
 
                 <div class="elective-item completed">
@@ -895,7 +933,10 @@
                         <div class="elective-code">COST 412</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    <div class="elective-status">Completed</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Completed</div>
+                        <button class="view-btn" onclick="openPrerequisites('COST 412')">View</button>
+                    </div>
                 </div>
 
                 <div class="elective-item completed">
@@ -903,7 +944,10 @@
                         <div class="elective-code">COST 450</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    <div class="elective-status">Completed</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Completed</div>
+                        <button class="view-btn" onclick="openPrerequisites('COST 450')">View</button>
+                    </div>
                 </div>
 
                 <div class="elective-item completed">
@@ -911,7 +955,10 @@
                         <div class="elective-code">COST 491</div>
                         <div class="elective-credits">2 Credits</div>
                     </div>
-                    <div class="elective-status">Completed</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Completed</div>
+                        <button class="view-btn" onclick="openPrerequisites('COST 491')">View</button>
+                    </div>
                 </div>
 
                 <div class="elective-item incomplete">
@@ -919,7 +966,10 @@
                         <div class="elective-code">COST 510</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    <div class="elective-status">Incomplete</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="elective-status">Incomplete</div>
+                        <button class="view-btn" onclick="openPrerequisites('COST 510')">View</button>
+                    </div>
                 </div>
 
                 <div class="completion-summary">
@@ -1177,6 +1227,12 @@
         
         document.getElementById('progressText').textContent = 
             `Overall degree progress: ${Math.round(completedPercent)}% completed`;
+    
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.location.hash === '#requirements-content') {
+                showTab('requirements');
+            }
+        });
     </script>
 </body>
 </html>
