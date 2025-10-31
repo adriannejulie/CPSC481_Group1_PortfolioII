@@ -107,7 +107,7 @@
         }
 
         .progress-fill.not-done {
-            background: linear-gradient(90deg, #ef5350 0%, #e53935 100%);
+            background: linear-gradient(90deg, #d1a3b3 0%, #b88fa3 100%);
         }
 
         .tabs {
@@ -172,6 +172,18 @@
             margin-bottom: 4px;
         }
 
+        .course-name {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 4px;
+        }
+
+        .course-instructor {
+            font-size: 12px;
+            color: #777;
+            font-style: italic;
+        }
+
         .course-credits {
             font-size: 13px;
             color: #666;
@@ -183,14 +195,6 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 13px;
-        }
-
-        .progress-badge {
-            background: #f0f0f0;
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-align: center;
-            font-weight: 600;
         }
 
         .requirement-card {
@@ -228,19 +232,6 @@
             background: #a01629;
         }
 
-        .requirement-progress {
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .requirement-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%);
-            transition: width 0.3s;
-        }
-
         .year-section {
             margin-bottom: 30px;
         }
@@ -272,20 +263,21 @@
         .course-box.green {
             background: #a5d6a7;
         }
+        
         .course-box.yellow {
             background: #ffeb3b;
-            }
+        }
 
         .course-box.red {
-            background: #ef9a9a;
+            background: #d1a3b3;
         }
 
         .course-box.green:hover{
             background-color: #4caf50;
         }
 
-         .course-box.red:hover{
-            background-color:#c41e3a;
+        .course-box.red:hover{
+            background-color: #8b4561;
         }
 
         .elective-item {
@@ -303,8 +295,8 @@
         }
 
         .elective-item.incomplete {
-            background: #ffcdd2;
-            border-left: 4px solid #e53935;
+            background: #e8d0d8;
+            border-left: 4px solid #8b4561;
         }
 
         .elective-code {
@@ -364,15 +356,7 @@
             font-size: 16px;
         }
 
-        .drop-in-badge {
-            padding: 8px 16px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 13px;
-        }
-
-        .date-input {
+        .date-input, .department-select {
             width: 100%;
             max-width: 300px;
             padding: 10px;
@@ -380,6 +364,7 @@
             border-radius: 4px;
             margin-bottom: 20px;
             font-size: 14px;
+            background: white;
         }
 
         .reason-section {
@@ -515,80 +500,9 @@
             background: #a01629;
         }
 
-        .calendar {
-            background: white;
-            padding: 15px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .calendar-nav {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            background: white;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-        }
-
-        .calendar-day-header {
-            text-align: center;
-            font-weight: 600;
-            font-size: 12px;
-            padding: 8px;
-            color: #666;
-        }
-
-        .calendar-day {
-            text-align: center;
-            padding: 10px;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        .calendar-day:hover {
-            background: #f5f5f5;
-        }
-
-        .calendar-day.disabled {
-            color: #ccc;
-            cursor: default;
-        }
-
-        .calendar-day.disabled:hover {
-            background: white;
-        }
-
         .hidden {
             display: none;
         }
-
-        .tab:hover,
-        .view-btn:hover,
-        .book-btn:hover {
-            text-decoration: underline;
-        }
-
     </style>
 </head>
 <body>
@@ -626,12 +540,14 @@
         <div class="content">
             <div id="overview-content">
                 <div class="course-list">
-                    <div class="section-title">Current semester Courses:</div>
-                    <div style="font-size: 13px; color: #666; margin-bottom: 15px;">12 credits enrolled/in progress</div>
+                    <div class="section-title">Fall 2025 Courses:</div>
+                    <div style="font-size: 13px; color: #666; margin-bottom: 15px;">6 credits enrolled/in progress</div>
                     
                     <div class="course-item">
                         <div class="course-info">
                             <div class="course-code">ENSP 67</div>
+                            <div class="course-name">Introduction to Software Engineering Principles</div>
+                            <div class="course-instructor">Dr. Sarah Johnson</div>
                             <div class="course-credits">3 Credits</div>
                         </div>
                         <div class="course-status">Enrolled</div>
@@ -640,14 +556,23 @@
                     <div class="course-item">
                         <div class="course-info">
                             <div class="course-code">ENGF 41</div>
+                            <div class="course-name">Engineering Fundamentals</div>
+                            <div class="course-instructor">Prof. Michael Chen</div>
                             <div class="course-credits">3 Credits</div>
                         </div>
                         <div class="course-status">Enrolled</div>
                     </div>
+                </div>
+
+                <div class="course-list" style="margin-top: 30px;">
+                    <div class="section-title">Winter 2026 Courses:</div>
+                    <div style="font-size: 13px; color: #666; margin-bottom: 15px;">6 credits enrolled/in progress</div>
 
                     <div class="course-item">
                         <div class="course-info">
                             <div class="course-code">COMS 367</div>
+                            <div class="course-name">Advanced Communication Systems</div>
+                            <div class="course-instructor">Dr. Emily Roberts</div>
                             <div class="course-credits">3 Credits</div>
                         </div>
                         <div class="course-status">Enrolled</div>
@@ -656,6 +581,8 @@
                     <div class="course-item">
                         <div class="course-info">
                             <div class="course-code">RELS 341</div>
+                            <div class="course-name">World Religions and Ethics</div>
+                            <div class="course-instructor">Prof. David Martinez</div>
                             <div class="course-credits">3 Credits</div>
                         </div>
                         <div class="course-status">Enrolled</div>
@@ -671,12 +598,10 @@
                         <div class="requirement-title">Major Requirements: Software Engineering</div>
                         <button class="view-btn" onclick="showMajorRequirements()">View</button>
                     </div>
-                    <div class="requirement-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill completed" id="majorCompletedProgress"></div>
-                            <div class="progress-fill in-progress" id="majorInProgressProgress"></div>
-                            <div class="progress-fill not-done" id="majorNotDoneProgress"></div>
-                        </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill completed" id="majorCompletedProgress"></div>
+                        <div class="progress-fill in-progress" id="majorInProgressProgress"></div>
+                        <div class="progress-fill not-done" id="majorNotDoneProgress"></div>
                     </div>
                 </div>
 
@@ -685,12 +610,10 @@
                         <div class="requirement-title">Minor Requirements: Mechatronics Engineering</div>
                         <button class="view-btn" onclick="showMinorRequirements()">View</button>
                     </div>
-                    <div class="requirement-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill completed" id="minorCompletedProgress"></div>
-                            <div class="progress-fill in-progress" id="minorInProgressProgress"></div>
-                            <div class="progress-fill not-done" id="minorNotDoneProgress"></div>
-                        </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill completed" id="minorCompletedProgress"></div>
+                        <div class="progress-fill in-progress" id="minorInProgressProgress"></div>
+                        <div class="progress-fill not-done" id="minorNotDoneProgress"></div>
                     </div>
                 </div>
 
@@ -699,12 +622,10 @@
                         <div class="requirement-title">Technical Electives</div>
                         <button class="view-btn" onclick="showTechnicalElectives()">View</button>
                     </div>
-                    <div class="requirement-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill completed" id="techCompletedProgress"></div>
-                            <div class="progress-fill in-progress" id="techInProgressProgress"></div>
-                            <div class="progress-fill not-done" id="techNotDoneProgress"></div>
-                        </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill completed" id="techCompletedProgress"></div>
+                        <div class="progress-fill in-progress" id="techInProgressProgress"></div>
+                        <div class="progress-fill not-done" id="techNotDoneProgress"></div>
                     </div>
                 </div>
 
@@ -713,12 +634,10 @@
                         <div class="requirement-title">COST Electives</div>
                         <button class="view-btn" onclick="showCOSTElectives()">View</button>
                     </div>
-                    <div class="requirement-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill completed" id="costCompletedProgress"></div>
-                            <div class="progress-fill in-progress" id="costInProgressProgress"></div>
-                            <div class="progress-fill not-done" id="costNotDoneProgress"></div>
-                        </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill completed" id="costCompletedProgress"></div>
+                        <div class="progress-fill in-progress" id="costInProgressProgress"></div>
+                        <div class="progress-fill not-done" id="costNotDoneProgress"></div>
                     </div>
                 </div>
             </div>
@@ -733,70 +652,69 @@
                 <div class="year-section">
                     <div class="year-title">Year: 1st</div>
                     <div class="course-grid">
-                        <button class="course-box green clickable" onclick="openPrerequisites('CHEM 209')">CHEM 209</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENDG 233')">ENDG 233</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 211')">MATH 211</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 225')">ENGG 225</button>
+                        <button class="course-box green" onclick="openPrerequisites('CHEM 209')">CHEM 209</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENDG 233')">ENDG 233</button>
+                        <button class="course-box green" onclick="openPrerequisites('MATH 275')">MATH 275</button>
+                        <button class="course-box green" onclick="openPrerequisites('MATH 211')">MATH 211</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENGG 225')">ENGG 225</button>
                     </div>
                     <div class="course-grid">
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 201')">ENGG 201</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 202')">ENGG 202</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 277')">MATH 277</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('PHYS 259')">PHYS 259</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 200')">ENGG 200</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENGG 201')">ENGG 201</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENGG 202')">ENGG 202</button>
+                        <button class="course-box green" onclick="openPrerequisites('MATH 277')">MATH 277</button>
+                        <button class="course-box green" onclick="openPrerequisites('PHYS 259')">PHYS 259</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENGG 200')">ENGG 200</button>
                     </div>
                 </div>
+
                 <div class="year-section">
                     <div class="year-title">Year: 2nd</div>
                     <div class="course-grid">
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENDG 319')">ENDG 319</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 300')">ENSF 300</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 375')">MATH 375</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 337')">ENSF 337</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENEL 353')">ENEL 353</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 271')">MATH 271</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENDG 319')">ENDG 319</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENSF 300')">ENSF 300</button>
+                        <button class="course-box green" onclick="openPrerequisites('MATH 375')">MATH 375</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENSF 337')">ENSF 337</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENEL 353')">ENEL 353</button>
+                        <button class="course-box green" onclick="openPrerequisites('MATH 271')">MATH 271</button>
                     </div>
                     <div class="course-grid">
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 338')">ENSF 338</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 380')">ENSF 380</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 381')">ENSF 381</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENCM 369')">ENCM 369</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENEL 327')">ENEL 327</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 349')">ENGG 349</button>
-
+                        <button class="course-box green" onclick="openPrerequisites('ENSF 338')">ENSF 338</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENSF 380')">ENSF 380</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENSF 381')">ENSF 381</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENCM 369')">ENCM 369</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENEL 327')">ENEL 327</button>
+                        <button class="course-box green" onclick="openPrerequisites('ENGG 349')">ENGG 349</button>
                     </div>
                 </div>
 
                 <div class="year-section">
                     <div class="year-title">Year: 3rd</div>
                     <div class="course-grid">
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 460')">ENSF 460</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 461')">ENSF 461</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 462')">ENSF 462</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 480')">ENSF 480</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENME 461')">ENME 461</button>
+                        <button class="course-box yellow" onclick="openPrerequisites('ENSF 460')">ENSF 460</button>
+                        <button class="course-box yellow" onclick="openPrerequisites('ENSF 461')">ENSF 461</button>
+                        <button class="course-box yellow" onclick="openPrerequisites('ENSF 462')">ENSF 462</button>
+                        <button class="course-box yellow" onclick="openPrerequisites('ENSF 480')">ENSF 480</button>
+                        <button class="course-box yellow" onclick="openPrerequisites('ENME 461')">ENME 461</button>
                     </div>
                     <div class="course-grid">
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 400')">ENSF 400</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 444')">ENSF 444</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('SENG 401')">SENG 401</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('SENG 438')">SENG 438</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENEL 441')">ENEL 441</button>
+                        <button class="course-box yellow" onclick="openPrerequisites('ENSF 400')">ENSF 400</button>
+                        <button class="course-box yellow" onclick="openPrerequisites('ENSF 444')">ENSF 444</button>
+                        <button class="course-box yellow" onclick="openPrerequisites('SENG 401')">SENG 401</button>
+                        <button class="course-box yellow" onclick="openPrerequisites('SENG 438')">SENG 438</button>
+                        <button class="course-box yellow" onclick="openPrerequisites('ENEL 441')">ENEL 441</button>
                     </div>
                 </div>
 
                 <div class="year-section">
                     <div class="year-title">Year: 4th</div>
                     <div class="course-grid">
-                        <button class="course-box red clickable" onclick="openPrerequisites('ENEL 500A')">ENEL 500A</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('SENG 511')">SENG 511</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('ENME 561')">ENME 561</button>
-
+                        <button class="course-box red" onclick="openPrerequisites('ENEL 500A')">ENEL 500A</button>
+                        <button class="course-box red" onclick="openPrerequisites('SENG 511')">SENG 511</button>
+                        <button class="course-box red" onclick="openPrerequisites('ENME 561')">ENME 561</button>
                     </div>
                     <div class="course-grid">
-                        <button class="course-box red clickable" onclick="openPrerequisites('ENEL 500B')">ENEL 500B</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('SENG 533')">SENG 533</button>
+                        <button class="course-box red" onclick="openPrerequisites('ENEL 500B')">ENEL 500B</button>
+                        <button class="course-box red" onclick="openPrerequisites('SENG 533')">SENG 533</button>
                     </div>
                 </div>
             </div>
@@ -813,11 +731,9 @@
                         <div class="elective-code">ENME 327</div>
                         <div class="elective-credits">3 Credits</div>
                     </div>
-                    
                     <div style="display: flex; align-items: center; gap: 10px;">
                         <div class="elective-status">Completed</div>
                         <button class="view-btn" onclick="openPrerequisites('ENME 327')">View</button>
-            
                     </div>
                 </div>
 
@@ -991,6 +907,20 @@
                         <div class="appointment-title">Appointment</div>
                     </div>
 
+                    <div style="margin-bottom: 10px; font-weight: 600; font-size: 14px;">Select Department</div>
+                    <select class="department-select" id="departmentSelect">
+                        <option value="">-- Select a Department --</option>
+                        <option value="ENSF">ENSF - Software Engineering</option>
+                        <option value="ENME">ENME - Mechanical Engineering</option>
+                        <option value="ENEL">ENEL - Electrical Engineering</option>
+                        <option value="ENCM">ENCM - Computer Engineering</option>
+                        <option value="ENGG">ENGG - General Engineering</option>
+                        <option value="MATH">MATH - Mathematics</option>
+                        <option value="COST">COST - Communication Studies</option>
+                        <option value="OTHER">OTHER - General Advising</option>
+                    </select>
+
+                    <div style="margin-bottom: 10px; font-weight: 600; font-size: 14px;">Select Date</div>
                     <input type="date" class="date-input" value="2025-08-17">
 
                     <div class="time-slots">
@@ -1076,6 +1006,12 @@
         function bookAppointment() {
             const reason = document.getElementById('advisingReason').value.trim();
             const date = document.querySelector('.date-input').value;
+            const department = document.getElementById('departmentSelect').value;
+            
+            if (!department) {
+                alert('Please select a department first.');
+                return;
+            }
             
             if (!selectedTimeSlot) {
                 alert('Please select a time slot first.');
@@ -1094,10 +1030,13 @@
                 day: 'numeric' 
             });
             
+            const deptName = document.getElementById('departmentSelect').options[document.getElementById('departmentSelect').selectedIndex].text;
+            
             document.getElementById('modalMessage').innerHTML = 
                 `Your appointment has been successfully booked for:<br><br>
-                <strong>${formattedDate}</strong><br>
-                <strong>${selectedTimeSlot}</strong><br><br>
+                <strong>Department:</strong> ${deptName}<br>
+                <strong>Date:</strong> ${formattedDate}<br>
+                <strong>Time:</strong> ${selectedTimeSlot}<br><br>
                 You will receive a confirmation email shortly.`;
             
             document.getElementById('bookingModal').classList.add('active');
@@ -1106,6 +1045,7 @@
         function closeModal() {
             document.getElementById('bookingModal').classList.remove('active');
             document.getElementById('advisingReason').value = '';
+            document.getElementById('departmentSelect').value = '';
             selectedTimeSlot = null;
             
             const allSlots = document.querySelectorAll('.time-slot.available');
@@ -1114,6 +1054,7 @@
                 slot.style.borderLeft = '4px solid #4caf50';
             });
         }
+
         function showTab(tabName) {
             document.getElementById('overview-content').classList.add('hidden');
             document.getElementById('requirements-content').classList.add('hidden');
@@ -1157,10 +1098,12 @@
             document.getElementById('requirements-content').classList.add('hidden');
             document.getElementById('cost-electives-content').classList.remove('hidden');
         }
+
         function openPrerequisites(courseCode) {
-            window.open(`prerequisites.html?course=${encodeURIComponent(courseCode)}`, '_blank'); 
+            window.location.href = `prerequisites.html?course=${encodeURIComponent(courseCode)}`; 
         }
 
+        // Progress calculations
         const totalCredits = 67;
         const completedCredits = 41;
         const inProgressCredits = 12;
@@ -1173,7 +1116,6 @@
         document.getElementById('completedProgress').style.width = completedPercent + '%';
         document.getElementById('inProgressProgress').style.width = inProgressPercent + '%';
         document.getElementById('notDoneProgress').style.width = notDonePercent + '%';
-
 
         const majorTotalCredits = 50; 
         const majorCompletedCredits = 35; 
@@ -1188,7 +1130,6 @@
         document.getElementById('majorInProgressProgress').style.width = majorInProgressPercent + '%';
         document.getElementById('majorNotDoneProgress').style.width = majorNotDonePercent + '%';
 
-
         const minorTotalCredits = 12;
         const minorCompletedCredits = 6;
         const minorInProgressCredits = 0; 
@@ -1201,7 +1142,6 @@
         document.getElementById('minorCompletedProgress').style.width = minorCompletedPercent + '%';
         document.getElementById('minorInProgressProgress').style.width = minorInProgressPercent + '%';
         document.getElementById('minorNotDoneProgress').style.width = minorNotDonePercent + '%';
-
 
         const techTotalCredits = 9;
         const techCompletedCredits = 0;
@@ -1216,7 +1156,6 @@
         document.getElementById('techInProgressProgress').style.width = techInProgressPercent + '%';
         document.getElementById('techNotDoneProgress').style.width = techNotDonePercent + '%';
 
-
         const costTotalCredits = 17;
         const costCompletedCredits = 14;
         const costInProgressCredits = 0; 
@@ -1230,7 +1169,6 @@
         document.getElementById('costInProgressProgress').style.width = costInProgressPercent + '%';
         document.getElementById('costNotDoneProgress').style.width = costNotDonePercent + '%';
 
-        
         document.getElementById('progressText').textContent = 
             `Overall degree progress: ${Math.round(completedPercent)}% completed`;
     
