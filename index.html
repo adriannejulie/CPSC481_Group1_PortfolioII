@@ -254,7 +254,7 @@
 
         .course-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 10px;
             margin-bottom: 20px;
         }
@@ -272,6 +272,9 @@
         .course-box.green {
             background: #a5d6a7;
         }
+        .course-box.yellow {
+            background: #ffeb3b;
+            }
 
         .course-box.red {
             background: #ef9a9a;
@@ -730,66 +733,70 @@
                 <div class="year-section">
                     <div class="year-title">Year: 1st</div>
                     <div class="course-grid">
+                        <button class="course-box green clickable" onclick="openPrerequisites('CHEM 209')">CHEM 209</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENDG 233')">ENDG 233</button>
                         <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 211')">MATH 211</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 225')">ENGG 225</button>
                     </div>
                     <div class="course-grid">
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                    
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 201')">ENGG 201</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 202')">ENGG 202</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 277')">MATH 277</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('PHYS 259')">PHYS 259</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 200')">ENGG 200</button>
                     </div>
                 </div>
-
                 <div class="year-section">
                     <div class="year-title">Year: 2nd</div>
                     <div class="course-grid">
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENDG 319')">ENDG 319</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 300')">ENSF 300</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 375')">MATH 375</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 337')">ENSF 337</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENEL 353')">ENEL 353</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 271')">MATH 271</button>
                     </div>
                     <div class="course-grid">
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 338')">ENSF 338</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 380')">ENSF 380</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 381')">ENSF 381</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENCM 369')">ENCM 369</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENEL 327')">ENEL 327</button>
+                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 349')">ENGG 349</button>
+
                     </div>
                 </div>
 
                 <div class="year-section">
                     <div class="year-title">Year: 3rd</div>
                     <div class="course-grid">
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
+                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 460')">ENSF 460</button>
+                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 461')">ENSF 461</button>
+                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 462')">ENSF 462</button>
+                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 480')">ENSF 480</button>
+                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENME 461')">ENME 461</button>
+                    </div>
+                    <div class="course-grid">
+                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 400')">ENSF 400</button>
+                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 444')">ENSF 444</button>
+                        <button class="course-box yellow clickable" onclick="openPrerequisites('SENG 401')">SENG 401</button>
+                        <button class="course-box yellow clickable" onclick="openPrerequisites('SENG 438')">SENG 438</button>
+                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENEL 441')">ENEL 441</button>
                     </div>
                 </div>
 
                 <div class="year-section">
                     <div class="year-title">Year: 4th</div>
                     <div class="course-grid">
-                        <button class="course-box red clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
+                        <button class="course-box red clickable" onclick="openPrerequisites('ENEL 500A')">ENEL 500A</button>
+                        <button class="course-box red clickable" onclick="openPrerequisites('SENG 511')">SENG 511</button>
+                        <button class="course-box red clickable" onclick="openPrerequisites('ENME 561')">ENME 561</button>
+
                     </div>
                     <div class="course-grid">
-                        <button class="course-box red clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
+                        <button class="course-box red clickable" onclick="openPrerequisites('ENEL 500B')">ENEL 500B</button>
+                        <button class="course-box red clickable" onclick="openPrerequisites('SENG 533')">SENG 533</button>
                     </div>
                 </div>
             </div>
@@ -1151,9 +1158,8 @@
             document.getElementById('cost-electives-content').classList.remove('hidden');
         }
         function openPrerequisites(courseCode) {
-            window.location.href = `prerequisites.html?course=${encodeURIComponent(courseCode)}`;
+            window.open(`prerequisites.html?course=${encodeURIComponent(courseCode)}`, '_blank'); 
         }
-
 
         const totalCredits = 67;
         const completedCredits = 41;

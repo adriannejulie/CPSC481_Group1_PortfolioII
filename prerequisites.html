@@ -121,10 +121,97 @@
     document.getElementById('course-title').textContent = `Prerequisites for ${course}`;
 
     const prereqs = {
-        'MATH 275': [
-            { code: 'MATH 249', status: 'Completed' },
-            { code: 'PHYS 211', status: 'Incomplete' }
+        'PHYS 259': [
+            { code: 'MATH 211', status: 'Completed' },
+            { code: 'MATH 275', status: 'Completed' }
         ],
+        'MATH 277': [
+            { code: 'MATH 275', status: 'Completed' }
+        ],
+        'ENDG 319': [
+            { code: 'ENDG 233', status: 'Completed' },
+            { code: 'MATH 277', status: 'Completed' }
+        ],
+        'ENSF 300': [
+            { code: 'ENDG 233', status: 'Completed' }
+        ],
+        'MATH 375': [
+            { code: 'MATH 277', status: 'Completed' }
+        ],
+        'ENSF 337': [
+            { code: 'ENDG 233', status: 'Completed' },
+        ],
+        'MATH 271': [
+            { code: 'MATH 211', status: 'Completed' }
+        ],
+        'ENSF 338': [
+            { code: 'ENSF 300', status: 'Completed' },
+            { code: 'ENSF 337', status: 'Completed' }
+        ],
+        'ENSF 380': [
+            { code: 'ENSF 300', status: 'Completed' },
+            { code: 'ENSF 337', status: 'Completed' }
+        ],
+        'ENSF 381': [
+            { code: 'ENSF 300', status: 'Completed' },
+            { code: 'ENSF 337', status: 'Completed' }
+        ],
+        'ENCM 369': [
+            { code: 'ENEL 353', status: 'Completed' },
+            { code: 'ENSF 337', status: 'Completed' }
+        ],
+        'ENEL 327': [
+            { code: 'MATH 375', status: 'Completed' }
+        ],
+        'ENGG 349': [
+            { code: 'ENGG 202', status: 'Completed' }
+        ],
+        'ENSF 460': [
+            { code: 'ENCM 369', status: 'Completed' }
+        ],
+        'ENSF 461': [
+            { code: 'ENSF 338', status: 'Completed' },
+            { code: 'ENCM 369', status: 'Completed' }
+        ],
+        'ENSF 480': [
+            { code: 'ENSF 338', status: 'Completed' },
+            { code: 'ENCM 369', status: 'Completed' }
+        ],
+        'ENME 461': [
+            { code: 'ENGG 349', status: 'Completed' },
+            { code: 'ENGG 225', status: 'Completed' }
+        ],
+        'ENSF 400': [
+            { code: 'ENSF 300', status: 'Completed' }
+        ],
+        'ENSF 444': [
+            { code: 'ENSF 300', status: 'Completed' },
+            { code: 'ENSF 337', status: 'Completed' }
+        ],
+        'ENSF 401': [
+            { code: 'ENSF 338', status: 'Completed' }
+        ],
+        'ENSF 438': [
+            { code: 'ENSF 338', status: 'Completed' }
+        ],
+        'ENEL 441': [
+            { code: 'ENEL 327', status: 'Completed' }
+        ],
+        'SENG 511': [
+            { code: 'ENSF 480', status: 'Completed' }
+        ],
+        'ENME 561': [
+            { code: 'ENME 461', status: 'Completed' }
+        ],
+        'ENEL 500B': [
+            { code: 'ENEL 500A', status: 'Completed' }
+        ],
+        'SENG 533': [
+            { code: 'ENSF 480', status: 'Completed' },
+            { code: 'ENSF 461', status: 'Completed' }
+        ],
+
+
         'ENEL 301': [
             { code: 'ENEL 201', status: 'Completed' },
             { code: 'ENGG 233', status: 'Completed' },
