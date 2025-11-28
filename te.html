@@ -1,0 +1,149 @@
+      function prerequisitesSatisfied(courseCode) {
+            const list = prereqs[courseCode];
+            if (!list || list.length === 0) return true; // no prereqs -> satisfied
+            return list.every(c => completedCourses.includes(c));
+        }
+
+
+        function collectKnownCourses() {
+            const set = new Set();
+            document.querySelectorAll('.course-box').forEach(box => {
+                const code = box.dataset.course;
+                if (code) set.add(code.trim());
+            });
+            Object.keys(prereqs).forEach(c => set.add(c));
+            Object.values(prereqs).flat().forEach(c => set.add(c));
+            return Array.from(set).sort();
+        }
+
+        function renderSearchList(filter = '') {
+            const results = document.getElementById('searchResults');
+            results.innerHTML = '';
+            const courses = collectKnownCourses().filter(c => c.toLowerCase().includes(filter.toLowerCase()));
+            courses.forEach(code => {
+                const div = document.createElement('div');
+                div.className = 'search-item';
+                div.draggable = true;
+                div.dataset.course = code;
+                div.innerHTML = `<div style="display:flex;flex-direction:column;align-items:flex-start;">
+                                    <div class="search-code">${code}</div>
+                                    <div class="search-prereqs">${(prereqs[code] && prereqs[code].length) ? 'Pre: ' + prereqs[code].join(', ') : 'No prereqs'}</div>
+                                </div>
+                                <div style="font-size:12px;color:#c41e3a;font-weight:700;">DRAG</div>`;
+                div.addEventListener('dragstart', (ev) => {
+                    ev.dataTransfer.setData('text/plain', code);
+                    ev.dataTransfer.effectAllowed = 'move';
+                });
+                results.appendChild(div);
+            });
+            if (courses.length === 0) {
+                results.innerHTML = `<div style="color:#666; font-size:13px;">No matches</div>`;
+            }
+        }
+
+        document.getElementById('courseSearch').addEventListener('input', (e) => {
+            renderSearchList(e.target.value);
+        });
+
+        function makeBoxesDroppable() {
+            const grids = document.querySelectorAll('.course-grid');
+            grids.forEach(grid => {
+                // add slot boxes until there are 5 slots
+                while (grid.children.length < 5) {
+                    const slot = document.createElement('div');
+                    slot.className = 'course-box slot';
+                    slot.dataset.course = '';
+                    slot.textContent = 'SLOT';
+                    grid.appendChild(slot);
+                }
+
+                Array.from(grid.children).forEach(box => {
+                    box.setAttribute('draggable', 'false');
+                    
+                    box.addEventListener('click', () => {
+                        const course = box.dataset.course || box.textContent.trim();
+                        if (!course || course === 'SLOT') return;
+                        window.open(`prerequisites.html?course=${encodeURIComponent(course)}`, '_blank');
+                    });
+
+                    box.addEventListener('dragenter', (e) => {
+                        e.preventDefault();
+                        box.classList.add('highlight');
+                    });
+                    box.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = 'move';
+                    });
+                    box.addEventListener('dragleave', (e) => {
+                        box.classList.remove('highlight');
+                    });
+                    box.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        box.classList.remove('highlight');
+                        const code = e.dataTransfer.getData('text/plain') || e.dataTransfer.getData('text');
+                        if (!code) return;
+                        applyCourseToBox(box, code.trim());
+                        saveMajorGridState();
+                        renderSearchList(document.getElementById('courseSearch').value);
+                    });
+                });
+            });
+        }
+
+        function applyCourseToBox(box, courseCode) {
+            box.textContent = courseCode;
+            box.dataset.course = courseCode;
+
+            if (prerequisitesSatisfied(courseCode)) {
+                box.classList.remove('red', 'yellow', 'slot');
+                box.classList.add('green');
+            } else {
+                box.classList.remove('green', 'yellow', 'slot');
+                box.classList.add('red');
+            }
+
+            // if course has no prereqs and not in prereqs object, default to green
+            if (!prereqs[courseCode]) {
+                // treat unknown course as no prereqs
+                box.classList.remove('red', 'yellow', 'slot');
+                box.classList.add('green');
+            }
+
+            // ensure clicking opens prereqs page
+            box.onclick = () => {
+                const course = box.dataset.course || box.textContent.trim();
+                if (!course || course === 'SLOT') return;
+                window.open(`prerequisites.html?course=${encodeURIComponent(course)}`, '_blank');
+            };
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+
+            const totalCredits = 67;
+            const completedCredits = 41;
+            const inProgressCredits = 12;
+            const notDoneCredits = totalCredits - completedCredits - inProgressCredits;
+            const completedPercent = (completedCredits / totalCredits) * 100;
+            const inProgressPercent = (inProgressCredits / totalCredits) * 100;
+            const notDonePercent = (notDoneCredits / totalCredits) * 100;
+            document.getElementById('completedProgress').style.width = completedPercent + '%';
+            document.getElementById('inProgressProgress').style.width = inProgressPercent + '%';
+            document.getElementById('notDoneProgress').style.width = notDonePercent + '%';
+            document.getElementById('progressText').textContent = `Overall degree progress: ${Math.round(completedPercent)}% completed`;
+
+            document.querySelectorAll('.course-box').forEach(box => {
+                const code = box.dataset.course;
+                if (!code || code === 'SLOT') {
+                    box.classList.add('slot');
+                    box.textContent = box.textContent.trim() || 'SLOT';
+                } else {
+                    if (!box.classList.contains('green') && !box.classList.contains('red') && !box.classList.contains('yellow')) {
+                        if (prerequisitesSatisfied(code)) box.classList.add('green');
+                        else box.classList.add('red');
+                    }
+                }
+            });
+
+            makeBoxesDroppable();
+            renderSearchList();
+        });
