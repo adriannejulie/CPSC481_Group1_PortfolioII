@@ -1,12 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="style.css">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>University of Calgary - Academic Planning Navigator</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #f0f0f0;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 100%;
+            width: 100%;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .header h1 { font-size: 14px; font-weight: 600; }
+        .header-title { font-size: 16px; color: #333; }
+
+        .student-banner {
+            background: linear-gradient(135deg,#c41e3a 0%,#8b1529 100%);
+            color: white;
+            padding: 20px 30px;
+        }
+
+        .student-info { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+        .student-name { font-size: 24px; font-weight: bold; }
+        .student-details { font-size: 13px; opacity: 0.95; }
+        .gpa-info { text-align: right; }
+        .gpa { font-size: 14px; margin-bottom: 2px; }
+        .credits { font-size: 13px; }
+
+        .progress-bar { height: 8px; background: transparent; border-radius: 4px; overflow: hidden; width: 100%; display:flex; }
+        .progress-fill { height: 100%; transition: width 0.3s; }
+        .progress-fill.completed { background: linear-gradient(90deg,#4caf50 0%,#8bc34a 100%); }
+        .progress-fill.in-progress { background: linear-gradient(90deg,#ffd54f 0%,#ffeb3b 100%); }
+        .progress-fill.not-done { background: linear-gradient(90deg,#ef5350 0%,#e53935 100%); }
+
+        .tabs { display:flex; background: #f5f5f5; border-bottom: 2px solid #ddd; }
+        .tab { flex:1; padding:15px; text-align:center; cursor:pointer; background:#f5f5f5; border:none; font-size:15px; font-weight:500; transition:all 0.3s; }
+        .tab:hover { background:#ebebeb; }
+        .tab.active { background:white; border-bottom:3px solid #c41e3a; }
+
+        /* Layout change: main area + sidebar */
+        .content {
+            display: flex;
+            gap: 24px;
+            padding: 30px;
+        }
+
+        .main-area {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+
+        .sidebar {
+            width: 320px;
+            max-width: 32%;
+            background: #fafafa;
+            border-left: 1px solid #eee;
+            padding: 18px;
+            border-radius: 6px;
+            align-self: flex-start;
+            height: fit-content;
+        }
+
+        /* Keep existing components styling mostly intact */
+        .course-list { margin-bottom: 20px; }
+        .section-title { font-size: 16px; font-weight:600; margin-bottom: 15px; }
+        .course-item { display:flex; justify-content:space-between; align-items:center; padding:15px; background:#f9f9f9; margin-bottom:10px; border-radius:4px; border-left:4px solid #c41e3a; }
+        .course-info { flex:1; }
+        .course-code { font-weight:600; font-size:14px; margin-bottom:4px; }
+        .course-credits { font-size:13px; color:#666; }
+        .course-status { padding:6px 16px; background:white; border:1px solid #ddd; border-radius:4px; font-size:13px; }
+
+        .requirement-card { background:#f9f9f9; padding:20px; margin-bottom:15px; border-radius:4px; border-left:4px solid #c41e3a; }
+        .requirement-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+        .requirement-title { font-weight:600; font-size:15px; }
+        .view-btn { padding:8px 20px; background:#c41e3a; color:white; border:none; border-radius:4px; cursor:pointer; font-size:13px; font-weight:500; }
+        .view-btn:hover { background:#a01629; }
+
+        .requirement-progress { height:8px; background:#e0e0e0; border-radius:4px; overflow:hidden; }
+
+        .year-section { margin-bottom: 30px; }
+        .year-title { font-weight:600; font-size:15px; margin-bottom:15px; color:#333; }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .course-box {
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            border: 1px solid rgba(0,0,0,0.06);
+            background: #f5f5f5;
+            min-height: 52px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            position:relative;
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+            user-select: none;
+        }
+
+        .course-box:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.04); }
+
+        .course-box.green { background:#a5d6a7; border-left: 4px solid #4caf50; color: #114d1a;}
+        .course-box.yellow { background:#ffeb3b; border-left: 4px solid #f9a825; color: #5a4b00; }
+        .course-box.red { background:#ef9a9a; border-left: 4px solid #e53935; color: #5a1a1a; }
+        .course-box.slot { background: #fff; border: 1px dashed rgba(0,0,0,0.08); color: #666; border-left:4px solid transparent; }
+
+        .course-box.highlight {
+            outline: 3px dashed rgba(196,30,58,0.45);
+            transform: translateY(-3px);
+        }
+
+        .elective-item { display:flex; justify-content:space-between; align-items:center; padding:15px; margin-bottom:10px; border-radius:4px; }
+        .elective-item.completed { background:#c8e6c9; border-left:4px solid #4caf50; }
+        .elective-item.incomplete { background:#ffcdd2; border-left:4px solid #e53935; }
+        .elective-code { font-weight:600; font-size:14px; }
+        .elective-credits { font-size:13px; color:#555; margin-top:2px; }
+        .elective-status { font-size:13px; font-weight:500; }
+
+        .completion-summary { background:#f9f9f9; padding:15px; border-radius:4px; border-left:4px solid #c41e3a; display:flex; justify-content:space-between; align-items:center; font-weight:600; }
+
+        .return-link { color:#c41e3a; text-decoration:none; font-size:14px; font-weight:500; }
+        .return-link:hover { text-decoration:underline; }
+
+        .advising-section { background:white; padding:20px; border-radius:4px; margin-bottom:20px; }
+
+        /* Sidebar search specific */
+        .search-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+        .search-title { font-weight:600; font-size:16px; color:#c41e3a; }
+        .search-input { width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px; margin-bottom:12px; }
+        .search-results { max-height: 52vh; overflow:auto; display:flex; flex-direction:column; gap:8px; }
+        .search-item {
+            background:white; border:1px solid #eee; padding:10px 12px; border-radius:6px; cursor:grab; display:flex; justify-content:space-between; align-items:center;
+        }
+        .search-item:active { cursor:grabbing; }
+        .search-code { font-weight:700; font-size:13px; }
+        .search-prereqs { font-size:12px; color:#666; }
+
+        .small-note { font-size:12px; color:#666; margin-top:10px; }
+
+        .hidden { display:none; }
+
+        /* modal & other styles remain */
+        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center; }
+        .modal.active { display:flex; }
+        .modal-content { background:white; padding:30px; border-radius:8px; max-width:400px; width:90%; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
+        .modal-title { font-size:20px; font-weight:600; margin-bottom:15px; color:#4caf50; }
+        .modal-message { font-size:14px; color:#666; margin-bottom:20px; line-height:1.5; }
+        .modal-close-btn { padding:10px 30px; background:#c41e3a; color:white; border:none; border-radius:4px; cursor:pointer; font-size:14px; font-weight:500; }
+        .modal-close-btn:hover { background:#a01629; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -41,104 +210,105 @@
         </div>
 
         <div class="content">
-            <div id="overview-content">
-                <div class="course-list">
-                    <div class="section-title">Current semester Courses:</div>
-                    <div style="font-size: 13px; color: #666; margin-bottom: 15px;">12 credits enrolled/in progress</div>
+            <div class="main-area">
+                <div id="overview-content">
+                    <div class="course-list">
+                        <div class="section-title">Current semester Courses:</div>
+                        <div style="font-size:13px; color:#666; margin-bottom:15px;">12 credits enrolled/in progress</div>
+                        
+                        <div class="course-item">
+                            <div class="course-info">
+                                <div class="course-code">ENSP 67</div>
+                                <div class="course-credits">3 Credits</div>
+                            </div>
+                            <div class="course-status">Enrolled</div>
+                        </div>
+
+                        <div class="course-item">
+                            <div class="course-info">
+                                <div class="course-code">ENGF 41</div>
+                                <div class="course-credits">3 Credits</div>
+                            </div>
+                            <div class="course-status">Enrolled</div>
+                        </div>
+
+                        <div class="course-item">
+                            <div class="course-info">
+                                <div class="course-code">COMS 367</div>
+                                <div class="course-credits">3 Credits</div>
+                            </div>
+                            <div class="course-status">Enrolled</div>
+                        </div>
+
+                        <div class="course-item">
+                            <div class="course-info">
+                                <div class="course-code">RELS 341</div>
+                                <div class="course-credits">3 Credits</div>
+                            </div>
+                            <div class="course-status">Enrolled</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="requirements-content" class="hidden">
+                    <div class="section-title">Major Requirements: Software Engineering</div>
                     
-                    <div class="course-item">
-                        <div class="course-info">
-                            <div class="course-code">ENSP 67</div>
-                            <div class="course-credits">3 Credits</div>
+                    <div class="requirement-card">
+                        <div class="requirement-header">
+                            <div class="requirement-title">Major Requirements: Software Engineering</div>
+                            <button class="view-btn" onclick="showMajorRequirements()">View</button>
                         </div>
-                        <div class="course-status">Enrolled</div>
-                    </div>
-
-                    <div class="course-item">
-                        <div class="course-info">
-                            <div class="course-code">ENGF 41</div>
-                            <div class="course-credits">3 Credits</div>
-                        </div>
-                        <div class="course-status">Enrolled</div>
-                    </div>
-
-                    <div class="course-item">
-                        <div class="course-info">
-                            <div class="course-code">COMS 367</div>
-                            <div class="course-credits">3 Credits</div>
-                        </div>
-                        <div class="course-status">Enrolled</div>
-                    </div>
-
-                    <div class="course-item">
-                        <div class="course-info">
-                            <div class="course-code">RELS 341</div>
-                            <div class="course-credits">3 Credits</div>
-                        </div>
-                        <div class="course-status">Enrolled</div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="requirements-content" class="hidden">
-                <div class="section-title">Major Requirements: Software Engineering</div>
-                
-                <div class="requirement-card">
-                    <div class="requirement-header">
-                        <div class="requirement-title">Major Requirements: Software Engineering</div>
-                        <button class="view-btn" onclick="showMajorRequirements()">View</button>
-                    </div>
-                    <div class="requirement-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill completed" id="majorCompletedProgress"></div>
-                            <div class="progress-fill in-progress" id="majorInProgressProgress"></div>
-                            <div class="progress-fill not-done" id="majorNotDoneProgress"></div>
+                        <div class="requirement-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill completed" id="majorCompletedProgress"></div>
+                                <div class="progress-fill in-progress" id="majorInProgressProgress"></div>
+                                <div class="progress-fill not-done" id="majorNotDoneProgress"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="requirement-card">
-                    <div class="requirement-header">
-                        <div class="requirement-title">Minor Requirements: Mechatronics Engineering</div>
-                        <button class="view-btn" onclick="showMinorRequirements()">View</button>
+                    <div class="requirement-card">
+                        <div class="requirement-header">
+                            <div class="requirement-title">Minor Requirements: Mechatronics Engineering</div>
+                            <button class="view-btn" onclick="showMinorRequirements()">View</button>
+                        </div>
+                        <div class="requirement-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill completed" id="minorCompletedProgress"></div>
+                                <div class="progress-fill in-progress" id="minorInProgressProgress"></div>
+                                <div class="progress-fill not-done" id="minorNotDoneProgress"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="requirement-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill completed" id="minorCompletedProgress"></div>
-                            <div class="progress-fill in-progress" id="minorInProgressProgress"></div>
-                            <div class="progress-fill not-done" id="minorNotDoneProgress"></div>
+
+                    <div class="requirement-card">
+                        <div class="requirement-header">
+                            <div class="requirement-title">Technical Electives</div>
+                            <button class="view-btn" onclick="showTechnicalElectives()">View</button>
+                        </div>
+                        <div class="requirement-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill completed" id="techCompletedProgress"></div>
+                                <div class="progress-fill in-progress" id="techInProgressProgress"></div>
+                                <div class="progress-fill not-done" id="techNotDoneProgress"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="requirement-card">
+                        <div class="requirement-header">
+                            <div class="requirement-title">COST Electives</div>
+                            <button class="view-btn" onclick="showCOSTElectives()">View</button>
+                        </div>
+                        <div class="requirement-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill completed" id="costCompletedProgress"></div>
+                                <div class="progress-fill in-progress" id="costInProgressProgress"></div>
+                                <div class="progress-fill not-done" id="costNotDoneProgress"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="requirement-card">
-                    <div class="requirement-header">
-                        <div class="requirement-title">Technical Electives</div>
-                        <button class="view-btn" onclick="showTechnicalElectives()">View</button>
-                    </div>
-                    <div class="requirement-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill completed" id="techCompletedProgress"></div>
-                            <div class="progress-fill in-progress" id="techInProgressProgress"></div>
-                            <div class="progress-fill not-done" id="techNotDoneProgress"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="requirement-card">
-                    <div class="requirement-header">
-                        <div class="requirement-title">COST Electives</div>
-                        <button class="view-btn" onclick="showCOSTElectives()">View</button>
-                    </div>
-                    <div class="requirement-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill completed" id="costCompletedProgress"></div>
-                            <div class="progress-fill in-progress" id="costInProgressProgress"></div>
-                            <div class="progress-fill not-done" id="costNotDoneProgress"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
                 <div id="major-requirements-content" class="hidden">
                     <div style="margin-bottom:20px;">
@@ -147,76 +317,87 @@
                     
                     <div class="section-title">Major Requirements: Software Engineering</div>
 
-                <div class="year-section">
-                    <div class="year-title">Year: 1st</div>
-                    <div class="course-grid">
-                        <button class="course-box green clickable" onclick="openPrerequisites('CHEM 209')">CHEM 209</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENDG 233')">ENDG 233</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 275')">MATH 275</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 211')">MATH 211</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 225')">ENGG 225</button>
+                    <!-- Year 1 -->
+                    <div class="year-section">
+                        <div class="year-title">Year: 1st</div>
+                        <div class="course-grid" id="grid-year1">
+                            <!-- these boxes will be initialised by JS (and slots added if fewer than 5) -->
+                            <div class="course-box green" data-course="CHEM 209">CHEM 209</div>
+                            <div class="course-box green" data-course="ENDG 233">ENDG 233</div>
+                            <div class="course-box green" data-course="MATH 275">MATH 275</div>
+                            <div class="course-box green" data-course="MATH 211">MATH 211</div>
+                            <div class="course-box green" data-course="ENGG 225">ENGG 225</div>
+                        </div>
+
+                        <div class="course-grid" id="grid-year1-row2">
+                            <div class="course-box green" data-course="ENGG 201">ENGG 201</div>
+                            <div class="course-box green" data-course="ENGG 202">ENGG 202</div>
+                            <div class="course-box green" data-course="MATH 277">MATH 277</div>
+                            <div class="course-box green" data-course="PHYS 259">PHYS 259</div>
+                            <div class="course-box green" data-course="ENGG 200">ENGG 200</div>
+                        </div>
                     </div>
-                    <div class="course-grid">
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 201')">ENGG 201</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 202')">ENGG 202</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 277')">MATH 277</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('PHYS 259')">PHYS 259</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 200')">ENGG 200</button>
+
+                    <!-- Year 2 -->
+                    <div class="year-section">
+                        <div class="year-title">Year: 2nd</div>
+                        <div class="course-grid" id="grid-year2">
+                            <div class="course-box green" data-course="ENDG 319">ENDG 319</div>
+                            <div class="course-box green" data-course="ENSF 300">ENSF 300</div>
+                            <div class="course-box green" data-course="MATH 375">MATH 375</div>
+                            <div class="course-box green" data-course="ENSF 337">ENSF 337</div>
+                            <div class="course-box green" data-course="ENEL 353">ENEL 353</div>
+                        </div>
+
+                        <div class="course-grid" id="grid-year2-row2">
+                            <div class="course-box green" data-course="MATH 271">MATH 271</div>
+                            <div class="course-box green" data-course="ENSF 338">ENSF 338</div>
+                            <div class="course-box green" data-course="ENSF 380">ENSF 380</div>
+                            <div class="course-box green" data-course="ENSF 381">ENSF 381</div>
+                            <div class="course-box green" data-course="ENCM 369">ENCM 369</div>
+                        </div>
+                    </div>
+
+                    <!-- Year 3 -->
+                    <div class="year-section">
+                        <div class="year-title">Year: 3rd</div>
+                        <div class="course-grid" id="grid-year3">
+                            <div class="course-box yellow" data-course="ENSF 460">ENSF 460</div>
+                            <div class="course-box yellow" data-course="ENSF 461">ENSF 461</div>
+                            <div class="course-box yellow" data-course="ENSF 462">ENSF 462</div>
+                            <div class="course-box yellow" data-course="ENSF 480">ENSF 480</div>
+                            <div class="course-box yellow" data-course="ENME 461">ENME 461</div>
+                        </div>
+
+                        <div class="course-grid" id="grid-year3-row2">
+                            <div class="course-box yellow" data-course="ENSF 400">ENSF 400</div>
+                            <div class="course-box yellow" data-course="ENSF 444">ENSF 444</div>
+                            <div class="course-box yellow" data-course="SENG 401">SENG 401</div>
+                            <div class="course-box yellow" data-course="SENG 438">SENG 438</div>
+                            <div class="course-box yellow" data-course="ENEL 441">ENEL 441</div>
+                        </div>
+                    </div>
+
+                    <!-- Year 4 -->
+                    <div class="year-section">
+                        <div class="year-title">Year: 4th</div>
+                        <div class="course-grid" id="grid-year4">
+                            <div class="course-box red" data-course="ENEL 500A">ENEL 500A</div>
+                            <div class="course-box red" data-course="SENG 511">SENG 511</div>
+                            <div class="course-box red" data-course="ENME 561">ENME 561</div>
+                            <div class="course-box red" data-course="ENEL 500B">ENEL 500B</div>
+                            <div class="course-box red" data-course="SENG 533">SENG 533</div>
+                        </div>
+
+                        <div class="course-grid" id="grid-year4-row2">
+                            <div class="course-box yellow" data-course="">COST Option</div>
+                            <div class="course-box yellow" data-course="">COST Option</div>
+                            <div class="course-box yellow" data-course="">COST Option</div>
+                            <div class="course-box yellow" data-course="">COST Option</div>
+                            <div class="course-box yellow" data-course="">COST Option</div>
+                        </div>
                     </div>
                 </div>
-                <div class="year-section">
-                    <div class="year-title">Year: 2nd</div>
-                    <div class="course-grid">
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENDG 319')">ENDG 319</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 300')">ENSF 300</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 375')">MATH 375</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 337')">ENSF 337</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENEL 353')">ENEL 353</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('MATH 271')">MATH 271</button>
-                    </div>
-                    <div class="course-grid">
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 338')">ENSF 338</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 380')">ENSF 380</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENSF 381')">ENSF 381</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENCM 369')">ENCM 369</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENEL 327')">ENEL 327</button>
-                        <button class="course-box green clickable" onclick="openPrerequisites('ENGG 349')">ENGG 349</button>
-
-                    </div>
-                </div>
-
-                <div class="year-section">
-                    <div class="year-title">Year: 3rd</div>
-                    <div class="course-grid">
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 460')">ENSF 460</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 461')">ENSF 461</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 462')">ENSF 462</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 480')">ENSF 480</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENME 461')">ENME 461</button>
-                    </div>
-                    <div class="course-grid">
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 400')">ENSF 400</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENSF 444')">ENSF 444</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('SENG 401')">SENG 401</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('SENG 438')">SENG 438</button>
-                        <button class="course-box yellow clickable" onclick="openPrerequisites('ENEL 441')">ENEL 441</button>
-                    </div>
-                </div>
-
-                <div class="year-section">
-                    <div class="year-title">Year: 4th</div>
-                    <div class="course-grid">
-                        <button class="course-box red clickable" onclick="openPrerequisites('ENEL 500A')">ENEL 500A</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('SENG 511')">SENG 511</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('ENME 561')">ENME 561</button>
-
-                    </div>
-                    <div class="course-grid">
-                        <button class="course-box red clickable" onclick="openPrerequisites('ENEL 500B')">ENEL 500B</button>
-                        <button class="course-box red clickable" onclick="openPrerequisites('SENG 533')">SENG 533</button>
-                    </div>
-                </div>
-            </div>
 
                 <div id="minor-requirements-content" class="hidden">
                     <div style="margin-bottom:20px;">
@@ -225,18 +406,17 @@
                     
                     <div class="section-title">Minor: Mechatronics Engineering</div>
 
-                <div class="elective-item completed">
-                    <div>
-                        <div class="elective-code">ENME 327</div>
-                        <div class="elective-credits">3 Credits</div>
+                    <div class="elective-item completed">
+                        <div>
+                            <div class="elective-code">ENME 327</div>
+                            <div class="elective-credits">3 Credits</div>
+                        </div>
+                        
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <div class="elective-status">Completed</div>
+                            <button class="view-btn" onclick="openPrerequisites('ENME 327')">View</button>
+                        </div>
                     </div>
-                    
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <div class="elective-status">Completed</div>
-                        <button class="view-btn" onclick="openPrerequisites('ENME 327')">View</button>
-            
-                    </div>
-                </div>
 
                     <div class="elective-item completed">
                         <div>
@@ -408,7 +588,7 @@
                             <div class="appointment-title">Appointment</div>
                         </div>
 
-                    <input type="date" class="date-input" value="2025-08-17">
+                        <input type="date" class="date-input" value="2025-08-17">
 
                         <div class="time-slots">
                             <div class="section-title" style="margin-bottom:15px;">Available Time Slots</div>
@@ -549,59 +729,156 @@
 
         };
 
-        function selectTimeSlot(element, timeSlot) {
-            const allSlots = document.querySelectorAll('.time-slot.available');
-            allSlots.forEach(slot => {
-                slot.style.border = 'none';
-                slot.style.borderLeft = '4px solid #4caf50';
-            });
-            
-            element.style.border = '3px solid #c41e3a';
-            element.style.borderLeft = '4px solid #4caf50';
-            selectedTimeSlot = timeSlot;
+        function prerequisitesSatisfied(courseCode) {
+            const list = prereqs[courseCode];
+            if (!list || list.length === 0) return true; // no prereqs -> satisfied
+            return list.every(c => completedCourses.includes(c));
         }
 
-        function bookAppointment() {
-            const reason = document.getElementById('advisingReason').value.trim();
-            const date = document.querySelector('.date-input').value;
-            
-            if (!selectedTimeSlot) {
-                alert('Please select a time slot first.');
-                return;
-            }
-            
-            if (!reason) {
-                alert('Please enter a reason for advising.');
-                return;
-            }
-            
-            const formattedDate = new Date(date).toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
+
+        function collectKnownCourses() {
+            const set = new Set();
+            document.querySelectorAll('.course-box').forEach(box => {
+                const code = box.dataset.course;
+                if (code) set.add(code.trim());
             });
-            
-            document.getElementById('modalMessage').innerHTML = 
-                `Your appointment has been successfully booked for:<br><br>
-                <strong>${formattedDate}</strong><br>
-                <strong>${selectedTimeSlot}</strong><br><br>
-                You will receive a confirmation email shortly.`;
-            
-            document.getElementById('bookingModal').classList.add('active');
+            Object.keys(prereqs).forEach(c => set.add(c));
+            Object.values(prereqs).flat().forEach(c => set.add(c));
+            return Array.from(set).sort();
         }
 
-        function closeModal() {
-            document.getElementById('bookingModal').classList.remove('active');
-            document.getElementById('advisingReason').value = '';
-            selectedTimeSlot = null;
-            
-            const allSlots = document.querySelectorAll('.time-slot.available');
-            allSlots.forEach(slot => {
-                slot.style.border = 'none';
-                slot.style.borderLeft = '4px solid #4caf50';
+        function renderSearchList(filter = '') {
+            const results = document.getElementById('searchResults');
+            results.innerHTML = '';
+            const courses = collectKnownCourses().filter(c => c.toLowerCase().includes(filter.toLowerCase()));
+            courses.forEach(code => {
+                const div = document.createElement('div');
+                div.className = 'search-item';
+                div.draggable = true;
+                div.dataset.course = code;
+                div.innerHTML = `<div style="display:flex;flex-direction:column;align-items:flex-start;">
+                                    <div class="search-code">${code}</div>
+                                    <div class="search-prereqs">${(prereqs[code] && prereqs[code].length) ? 'Pre: ' + prereqs[code].join(', ') : 'No prereqs'}</div>
+                                </div>
+                                <div style="font-size:12px;color:#c41e3a;font-weight:700;">DRAG</div>`;
+                div.addEventListener('dragstart', (ev) => {
+                    ev.dataTransfer.setData('text/plain', code);
+                    ev.dataTransfer.effectAllowed = 'move';
+                });
+                results.appendChild(div);
+            });
+            if (courses.length === 0) {
+                results.innerHTML = `<div style="color:#666; font-size:13px;">No matches</div>`;
+            }
+        }
+
+        document.getElementById('courseSearch').addEventListener('input', (e) => {
+            renderSearchList(e.target.value);
+        });
+
+        function makeBoxesDroppable() {
+            const grids = document.querySelectorAll('.course-grid');
+            grids.forEach(grid => {
+                // add slot boxes until there are 5 slots
+                while (grid.children.length < 5) {
+                    const slot = document.createElement('div');
+                    slot.className = 'course-box slot';
+                    slot.dataset.course = '';
+                    slot.textContent = 'SLOT';
+                    grid.appendChild(slot);
+                }
+
+                Array.from(grid.children).forEach(box => {
+                    box.setAttribute('draggable', 'false');
+                    
+                    box.addEventListener('click', () => {
+                        const course = box.dataset.course || box.textContent.trim();
+                        if (!course || course === 'SLOT') return;
+                        window.open(`prerequisites.html?course=${encodeURIComponent(course)}`, '_blank');
+                    });
+
+                    box.addEventListener('dragenter', (e) => {
+                        e.preventDefault();
+                        box.classList.add('highlight');
+                    });
+                    box.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = 'move';
+                    });
+                    box.addEventListener('dragleave', (e) => {
+                        box.classList.remove('highlight');
+                    });
+                    box.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        box.classList.remove('highlight');
+                        const code = e.dataTransfer.getData('text/plain') || e.dataTransfer.getData('text');
+                        if (!code) return;
+                        applyCourseToBox(box, code.trim());
+                        saveMajorGridState();
+                        renderSearchList(document.getElementById('courseSearch').value);
+                    });
+                });
             });
         }
+
+        function applyCourseToBox(box, courseCode) {
+            box.textContent = courseCode;
+            box.dataset.course = courseCode;
+
+            if (prerequisitesSatisfied(courseCode)) {
+                box.classList.remove('red', 'yellow', 'slot');
+                box.classList.add('green');
+            } else {
+                box.classList.remove('green', 'yellow', 'slot');
+                box.classList.add('red');
+            }
+
+            // if course has no prereqs and not in prereqs object, default to green
+            if (!prereqs[courseCode]) {
+                // treat unknown course as no prereqs
+                box.classList.remove('red', 'yellow', 'slot');
+                box.classList.add('green');
+            }
+
+            // ensure clicking opens prereqs page
+            box.onclick = () => {
+                const course = box.dataset.course || box.textContent.trim();
+                if (!course || course === 'SLOT') return;
+                window.open(`prerequisites.html?course=${encodeURIComponent(course)}`, '_blank');
+            };
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+
+            const totalCredits = 67;
+            const completedCredits = 41;
+            const inProgressCredits = 12;
+            const notDoneCredits = totalCredits - completedCredits - inProgressCredits;
+            const completedPercent = (completedCredits / totalCredits) * 100;
+            const inProgressPercent = (inProgressCredits / totalCredits) * 100;
+            const notDonePercent = (notDoneCredits / totalCredits) * 100;
+            document.getElementById('completedProgress').style.width = completedPercent + '%';
+            document.getElementById('inProgressProgress').style.width = inProgressPercent + '%';
+            document.getElementById('notDoneProgress').style.width = notDonePercent + '%';
+            document.getElementById('progressText').textContent = `Overall degree progress: ${Math.round(completedPercent)}% completed`;
+
+            document.querySelectorAll('.course-box').forEach(box => {
+                const code = box.dataset.course;
+                if (!code || code === 'SLOT') {
+                    box.classList.add('slot');
+                    box.textContent = box.textContent.trim() || 'SLOT';
+                } else {
+                    if (!box.classList.contains('green') && !box.classList.contains('red') && !box.classList.contains('yellow')) {
+                        if (prerequisitesSatisfied(code)) box.classList.add('green');
+                        else box.classList.add('red');
+                    }
+                }
+            });
+
+            makeBoxesDroppable();
+            renderSearchList();
+        });
+
         function showTab(tabName) {
             const sections = [
                 'overview-content',
@@ -656,86 +933,101 @@
             document.getElementById('requirements-content').classList.add('hidden');
             document.getElementById('cost-electives-content').classList.remove('hidden');
         }
+
         function openPrerequisites(courseCode) {
-            window.open(`prerequisites.html?course=${encodeURIComponent(courseCode)}`, '_blank'); 
+            window.open(`prerequisites.html?course=${encodeURIComponent(courseCode)}`, '_blank');
         }
 
-        const totalCredits = 67;
-        const completedCredits = 41;
-        const inProgressCredits = 12;
-        const notDoneCredits = totalCredits - completedCredits - inProgressCredits;
+        /* Advising booking modal logic preserved from original file */
+        let selectedTimeSlot = null;
+        function selectTimeSlot(element, timeSlot) {
+            const allSlots = document.querySelectorAll('.time-slot.available');
+            allSlots.forEach(slot => {
+                slot.style.border = 'none';
+                slot.style.borderLeft = '4px solid #4caf50';
+            });
+            element.style.border = '3px solid #c41e3a';
+            element.style.borderLeft = '4px solid #4caf50';
+            selectedTimeSlot = timeSlot;
+        }
 
-        const completedPercent = (completedCredits / totalCredits) * 100;
-        const inProgressPercent = (inProgressCredits / totalCredits) * 100;
-        const notDonePercent = (notDoneCredits / totalCredits) * 100;
+        function bookAppointment() {
+            const reason = document.getElementById('advisingReason').value.trim();
+            const date = document.querySelector('.date-input').value;
+            if (!selectedTimeSlot) { alert('Please select a time slot first.'); return; }
+            if (!reason) { alert('Please enter a reason for advising.'); return; }
+            const formattedDate = new Date(date).toLocaleDateString('en-US', {
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+            });
+            document.getElementById('modalMessage').innerHTML =
+                `Your appointment has been successfully booked for:<br><br>
+                <strong>${formattedDate}</strong><br>
+                <strong>${selectedTimeSlot}</strong><br><br>
+                You will receive a confirmation email shortly.`;
+            document.getElementById('bookingModal').classList.add('active');
+        }
 
-        document.getElementById('completedProgress').style.width = completedPercent + '%';
-        document.getElementById('inProgressProgress').style.width = inProgressPercent + '%';
-        document.getElementById('notDoneProgress').style.width = notDonePercent + '%';
+        function closeModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+            document.getElementById('advisingReason').value = '';
+            selectedTimeSlot = null;
+            const allSlots = document.querySelectorAll('.time-slot.available');
+            allSlots.forEach(slot => {
+                slot.style.border = 'none';
+                slot.style.borderLeft = '4px solid #4caf50';
+            });
+        }
 
+        function updateSidebarVisibility() {
+            const sidebar = document.getElementById("courseSidebar");
+            const majorPageVisible = !document.getElementById("major-requirements-content").classList.contains("hidden");
+            sidebar.style.display = majorPageVisible ? "block" : "none";
+        }
+        function saveMajorGridState() {
+            const grids = document.querySelectorAll("#major-requirements-content .course-grid");
+            const state = [];
 
-        const majorTotalCredits = 50; 
-        const majorCompletedCredits = 35; 
-        const majorInProgressCredits = 6; 
-        const majorNotDoneCredits = majorTotalCredits - majorCompletedCredits - majorInProgressCredits;
+            grids.forEach(grid => {
+                const row = [];
+                grid.querySelectorAll(".course-box").forEach(box => {
+                    row.push({
+                        course: box.dataset.course || "",
+                        classes: box.className
+                    });
+                });
+                state.push(row);
+            });
 
-        const majorCompletedPercent = (majorCompletedCredits / majorTotalCredits) * 100;
-        const majorInProgressPercent = (majorInProgressCredits / majorTotalCredits) * 100;
-        const majorNotDonePercent = (majorNotDoneCredits / majorTotalCredits) * 100;
+            sessionStorage.setItem("majorGridState", JSON.stringify(state));
+        }
 
-        document.getElementById('majorCompletedProgress').style.width = majorCompletedPercent + '%';
-        document.getElementById('majorInProgressProgress').style.width = majorInProgressPercent + '%';
-        document.getElementById('majorNotDoneProgress').style.width = majorNotDonePercent + '%';
+        function restoreMajorGridState() {
+            const saved = sessionStorage.getItem("majorGridState");
+            if (!saved) return;
 
+            const state = JSON.parse(saved);
+            const grids = document.querySelectorAll("#major-requirements-content .course-grid");
 
-        const minorTotalCredits = 12;
-        const minorCompletedCredits = 6;
-        const minorInProgressCredits = 0; 
-        const minorNotDoneCredits = minorTotalCredits - minorCompletedCredits - minorInProgressCredits;
+            grids.forEach((grid, i) => {
+                const rowState = state[i];
+                if (!rowState) return;
 
-        const minorCompletedPercent = (minorCompletedCredits / minorTotalCredits) * 100;
-        const minorInProgressPercent = (minorInProgressCredits / minorTotalCredits) * 100;
-        const minorNotDonePercent = (minorNotDoneCredits / minorTotalCredits) * 100;
+                const boxes = grid.querySelectorAll(".course-box");
 
-        document.getElementById('minorCompletedProgress').style.width = minorCompletedPercent + '%';
-        document.getElementById('minorInProgressProgress').style.width = minorInProgressPercent + '%';
-        document.getElementById('minorNotDoneProgress').style.width = minorNotDonePercent + '%';
+                boxes.forEach((box, j) => {
+                    const savedBox = rowState[j];
+                    if (!savedBox) return;
 
-
-        const techTotalCredits = 9;
-        const techCompletedCredits = 0;
-        const techInProgressCredits = 0;
-        const techNotDoneCredits = techTotalCredits - techCompletedCredits - techInProgressCredits;
-
-        const techCompletedPercent = (techCompletedCredits / techTotalCredits) * 100;
-        const techInProgressPercent = (techInProgressCredits / techTotalCredits) * 100;
-        const techNotDonePercent = (techNotDoneCredits / techTotalCredits) * 100;
-
-        document.getElementById('techCompletedProgress').style.width = techCompletedPercent + '%';
-        document.getElementById('techInProgressProgress').style.width = techInProgressPercent + '%';
-        document.getElementById('techNotDoneProgress').style.width = techNotDonePercent + '%';
-
-
-        const costTotalCredits = 17;
-        const costCompletedCredits = 14;
-        const costInProgressCredits = 0; 
-        const costNotDoneCredits = costTotalCredits - costCompletedCredits - costInProgressCredits;
-
-        const costCompletedPercent = (costCompletedCredits / costTotalCredits) * 100;
-        const costInProgressPercent = (costInProgressCredits / costTotalCredits) * 100;
-        const costNotDonePercent = (costNotDoneCredits / costTotalCredits) * 100;
-
-        document.getElementById('costCompletedProgress').style.width = costCompletedPercent + '%';
-        document.getElementById('costInProgressProgress').style.width = costInProgressPercent + '%';
-        document.getElementById('costNotDoneProgress').style.width = costNotDonePercent + '%';
-
-        
-        document.getElementById('progressText').textContent = 
-            `Overall degree progress: ${Math.round(completedPercent)}% completed`;
-    
-        window.addEventListener('DOMContentLoaded', () => {
-            if (window.location.hash === '#requirements-content') {
-                showTab('requirements');
+                    box.dataset.course = savedBox.course;
+                    box.textContent = savedBox.course || "SLOT";
+                    box.className = savedBox.classes;
+                });
+            });
+        }
+        window.addEventListener("pageshow", (event) => {
+            if (event.persisted) {
+                restoreMajorGridState();
+                updateSidebarVisibility();
             }
         });
 
