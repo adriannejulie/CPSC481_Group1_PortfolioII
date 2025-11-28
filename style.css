@@ -302,4 +302,44 @@
         background: #a01629;
     }
 
+    .bookings-section {
+        background: white;
+        padding: 20px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+    .booked-appointment-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background: #f9f9f9;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        border-left: 4px solid #c41e3a;
+        transition: background 0.2s;
+    }
+
+    .booked-appointment-item:hover {
+        background: #f0f0f0;
+    }
+
+    .cancel-btn {
+        padding: 6px 16px;
+        background: #e53935;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 500;
+        margin-left: 15px;
+        transition: background 0.2s;
+    }
+
+    .cancel-btn:hover {
+        background: #c62828;
+    }
+
 

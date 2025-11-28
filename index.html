@@ -419,9 +419,18 @@
                 </div>
 
                 <div id="advising-content" class="hidden">
+                        <div class="bookings-section" style="background: white; padding: 20px; border-radius: 4px; margin-bottom: 20px;">
+                            <div class="appointment-header">
+                                <div class="appointment-title">Current Bookings</div>
+                            </div>
+                            <div id="bookingsList" style="margin-top: 15px;">
+                                <!-- Booked appointments will be displayed here -->
+                            </div>
+                        </div>
+
                         <div class="advising-section">
                             <div class="appointment-header">
-                                <div class="appointment-title">Appointment</div>
+                                <div class="appointment-title">Book New Appointment</div>
                             </div>
 
                             <div style="margin-bottom: 10px; font-weight: 600; font-size: 14px;">Select Department</div>
@@ -442,45 +451,8 @@
 
                             <div class="time-slots">
                                 <div class="section-title" style="margin-bottom: 15px;">Available Time Slots</div>
-                                
-                                <div class="time-slot available" onclick="selectTimeSlot(this, '9:00 AM - 10:00 AM')">
-                                    <span class="time-label">9:00 AM - 10:00 AM</span>
-                                    <span class="slot-status">Available</span>
-                                </div>
-                                
-                                <div class="time-slot available" onclick="selectTimeSlot(this, '10:00 AM - 11:00 AM')">
-                                    <span class="time-label">10:00 AM - 11:00 AM</span>
-                                    <span class="slot-status">Available</span>
-                                </div>
-                                
-                                <div class="time-slot booked">
-                                    <span class="time-label">11:00 AM - 12:00 PM</span>
-                                    <span class="slot-status">Booked</span>
-                                </div>
-                                
-                                <div class="time-slot available" onclick="selectTimeSlot(this, '12:00 PM - 1:00 PM')">
-                                    <span class="time-label">12:00 PM - 1:00 PM</span>
-                                    <span class="slot-status">Available</span>
-                                </div>
-                                
-                                <div class="time-slot booked">
-                                    <span class="time-label">1:00 PM - 2:00 PM</span>
-                                    <span class="slot-status">Booked</span>
-                                </div>
-                                
-                                <div class="time-slot available" onclick="selectTimeSlot(this, '2:00 PM - 3:00 PM')">
-                                    <span class="time-label">2:00 PM - 3:00 PM</span>
-                                    <span class="slot-status">Available</span>
-                                </div>
-                                
-                                <div class="time-slot available" onclick="selectTimeSlot(this, '3:00 PM - 4:00 PM')">
-                                    <span class="time-label">3:00 PM - 4:00 PM</span>
-                                    <span class="slot-status">Available</span>
-                                </div>
-                                
-                                <div class="time-slot booked">
-                                    <span class="time-label">4:00 PM - 5:00 PM</span>
-                                    <span class="slot-status">Booked</span>
+                                <div id="timeSlotsContainer">
+                                    <!-- Time slots will be dynamically rendered here -->
                                 </div>
                             </div>
 
@@ -728,6 +700,22 @@
 
             makeBoxesDroppable();
             renderSearchList();
+            
+            // Ensure sidebar is hidden on initial load (overview tab is default)
+            const sidebar = document.getElementById('courseSidebar');
+            if (sidebar) {
+                sidebar.classList.add('hidden');
+                sidebar.style.display = 'none';
+            }
+            
+            // Add event listener for date input to refresh time slots
+            const dateInput = document.querySelector('.date-input');
+            if (dateInput) {
+                dateInput.addEventListener('change', () => {
+                    renderTimeSlots();
+                    selectedTimeSlot = null; // Clear selection when date changes
+                });
+            }
         });
 
         function showTab(tabName) {
@@ -744,7 +732,11 @@
 
             if (tabName === 'overview') document.getElementById('overview-content').classList.remove('hidden');
             if (tabName === 'requirements') document.getElementById('requirements-content').classList.remove('hidden');
-            if (tabName === 'advising') document.getElementById('advising-content').classList.remove('hidden');
+            if (tabName === 'advising') {
+                document.getElementById('advising-content').classList.remove('hidden');
+                renderBookedAppointments();
+                renderTimeSlots();
+            }
 
             // update tab active class
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
@@ -753,8 +745,10 @@
             const sidebar = document.getElementById('courseSidebar');
             if (tabName === 'major-requirements') {
                 sidebar.classList.remove('hidden');
+                sidebar.style.display = 'block';
             } else {
                 sidebar.classList.add('hidden');
+                sidebar.style.display = 'none';
             }
         }
 
@@ -877,6 +871,93 @@
             selectedTimeSlot = timeSlot;
         }
 
+        // All available time slots
+        const allTimeSlots = [
+            '9:00 AM - 10:00 AM',
+            '10:00 AM - 11:00 AM',
+            '11:00 AM - 12:00 PM',
+            '12:00 PM - 1:00 PM',
+            '1:00 PM - 2:00 PM',
+            '2:00 PM - 3:00 PM',
+            '3:00 PM - 4:00 PM',
+            '4:00 PM - 5:00 PM'
+        ];
+
+        function getBookedAppointments() {
+            const stored = localStorage.getItem('bookedAppointments');
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        function isTimeSlotBooked(date, timeSlot) {
+            const appointments = getBookedAppointments();
+            return appointments.some(apt => apt.rawDate === date && apt.time === timeSlot);
+        }
+
+        function renderTimeSlots() {
+            const container = document.getElementById('timeSlotsContainer');
+            const dateInput = document.querySelector('.date-input');
+            const selectedDate = dateInput ? dateInput.value : '';
+            
+            if (!selectedDate) {
+                container.innerHTML = '<div style="color: #666; font-size: 14px; padding: 15px; text-align: center;">Please select a date first.</div>';
+                return;
+            }
+            
+            const availableSlots = allTimeSlots.filter(slot => !isTimeSlotBooked(selectedDate, slot));
+            
+            if (availableSlots.length === 0) {
+                container.innerHTML = '<div style="color: #666; font-size: 14px; padding: 15px; text-align: center; background: #f9f9f9; border-radius: 4px;">No available time slots for this date.</div>';
+                return;
+            }
+            
+            container.innerHTML = availableSlots.map(slot => {
+                return `
+                    <div class="time-slot available" onclick="selectTimeSlot(this, '${slot}')">
+                        <span class="time-label">${slot}</span>
+                        <span class="slot-status">Available</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function saveBookedAppointment(appointment) {
+            const appointments = getBookedAppointments();
+            appointments.push(appointment);
+            localStorage.setItem('bookedAppointments', JSON.stringify(appointments));
+        }
+
+        function deleteBookedAppointment(index) {
+            const appointments = getBookedAppointments();
+            appointments.splice(index, 1);
+            localStorage.setItem('bookedAppointments', JSON.stringify(appointments));
+            renderBookedAppointments();
+            renderTimeSlots(); // Refresh time slots when an appointment is cancelled
+        }
+
+        function renderBookedAppointments() {
+            const bookingsList = document.getElementById('bookingsList');
+            const appointments = getBookedAppointments();
+            
+            if (appointments.length === 0) {
+                bookingsList.innerHTML = '<div style="color: #666; font-size: 14px; padding: 15px; text-align: center; background: #f9f9f9; border-radius: 4px;">No appointments booked yet.</div>';
+                return;
+            }
+            
+            bookingsList.innerHTML = appointments.map((apt, index) => {
+                return `
+                    <div class="booked-appointment-item">
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">${apt.department}</div>
+                            <div style="font-size: 13px; color: #666; margin-bottom: 2px;">${apt.date}</div>
+                            <div style="font-size: 13px; color: #666; margin-bottom: 2px;">${apt.time}</div>
+                            ${apt.reason ? `<div style="font-size: 12px; color: #888; margin-top: 6px; font-style: italic;">"${apt.reason}"</div>` : ''}
+                        </div>
+                        <button class="cancel-btn" onclick="deleteBookedAppointment(${index})">Cancel</button>
+                    </div>
+                `;
+            }).join('');
+        }
+
         function bookAppointment() {
             const reason = document.getElementById('advisingReason').value.trim();
             const date = document.querySelector('.date-input').value;
@@ -906,6 +987,16 @@
             
             const deptName = document.getElementById('departmentSelect').options[document.getElementById('departmentSelect').selectedIndex].text;
             
+            // Save the appointment
+            const appointment = {
+                department: deptName,
+                date: formattedDate,
+                time: selectedTimeSlot,
+                reason: reason,
+                rawDate: date
+            };
+            saveBookedAppointment(appointment);
+            
             document.getElementById('modalMessage').innerHTML = 
                 `Your appointment has been successfully booked for:<br><br>
                 <strong>Department:</strong> ${deptName}<br>
@@ -914,6 +1005,11 @@
                 You will receive a confirmation email shortly.`;
             
             document.getElementById('bookingModal').classList.add('active');
+            
+            // Refresh the bookings list and time slots
+            renderBookedAppointments();
+            renderTimeSlots();
+            selectedTimeSlot = null; // Clear selection after booking
         }
 
         function closeModal() {
@@ -922,17 +1018,20 @@
             document.getElementById('departmentSelect').value = '';
             selectedTimeSlot = null;
             
-            const allSlots = document.querySelectorAll('.time-slot.available');
-            allSlots.forEach(slot => {
-                slot.style.border = 'none';
-                slot.style.borderLeft = '4px solid #4caf50';
-            });
+            // Refresh time slots to clear any selection highlighting
+            renderTimeSlots();
         }
 
         function updateSidebarVisibility() {
             const sidebar = document.getElementById("courseSidebar");
             const majorPageVisible = !document.getElementById("major-requirements-content").classList.contains("hidden");
-            sidebar.style.display = majorPageVisible ? "block" : "none";
+            if (majorPageVisible) {
+                sidebar.classList.remove('hidden');
+                sidebar.style.display = 'block';
+            } else {
+                sidebar.classList.add('hidden');
+                sidebar.style.display = 'none';
+            }
         }
         function saveMajorGridState() {
             const grids = document.querySelectorAll("#major-requirements-content .course-grid");
