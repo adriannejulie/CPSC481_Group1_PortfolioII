@@ -43,14 +43,12 @@
         <div class="content">
             <div id="overview-content">
                 <div class="course-list">
-                    <div class="section-title">Fall 2025 Courses:</div>
-                    <div style="font-size: 13px; color: #666; margin-bottom: 15px;">6 credits enrolled/in progress</div>
+                    <div class="section-title">Current semester Courses:</div>
+                    <div style="font-size: 13px; color: #666; margin-bottom: 15px;">12 credits enrolled/in progress</div>
                     
                     <div class="course-item">
                         <div class="course-info">
                             <div class="course-code">ENSP 67</div>
-                            <div class="course-name">Introduction to Software Engineering Principles</div>
-                            <div class="course-instructor">Dr. Sarah Johnson</div>
                             <div class="course-credits">3 Credits</div>
                         </div>
                         <div class="course-status">Enrolled</div>
@@ -59,23 +57,14 @@
                     <div class="course-item">
                         <div class="course-info">
                             <div class="course-code">ENGF 41</div>
-                            <div class="course-name">Engineering Fundamentals</div>
-                            <div class="course-instructor">Prof. Michael Chen</div>
                             <div class="course-credits">3 Credits</div>
                         </div>
                         <div class="course-status">Enrolled</div>
                     </div>
-                </div>
-
-                <div class="course-list" style="margin-top: 30px;">
-                    <div class="section-title">Winter 2026 Courses:</div>
-                    <div style="font-size: 13px; color: #666; margin-bottom: 15px;">6 credits enrolled/in progress</div>
 
                     <div class="course-item">
                         <div class="course-info">
                             <div class="course-code">COMS 367</div>
-                            <div class="course-name">Advanced Communication Systems</div>
-                            <div class="course-instructor">Dr. Emily Roberts</div>
                             <div class="course-credits">3 Credits</div>
                         </div>
                         <div class="course-status">Enrolled</div>
@@ -84,8 +73,6 @@
                     <div class="course-item">
                         <div class="course-info">
                             <div class="course-code">RELS 341</div>
-                            <div class="course-name">World Religions and Ethics</div>
-                            <div class="course-instructor">Prof. David Martinez</div>
                             <div class="course-credits">3 Credits</div>
                         </div>
                         <div class="course-status">Enrolled</div>
@@ -669,7 +656,6 @@
             document.getElementById('requirements-content').classList.add('hidden');
             document.getElementById('cost-electives-content').classList.remove('hidden');
         }
-
         function openPrerequisites(courseCode) {
             window.open(`prerequisites.html?course=${encodeURIComponent(courseCode)}`, '_blank'); 
         }
