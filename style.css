@@ -69,6 +69,7 @@
     }
 
     .progress-bar { 
+    position: relative;
     height: 8px; 
     background: transparent; 
     border-radius: 4px; 
@@ -88,6 +89,16 @@ margin-top: 0;
     .progress-fill.completed { background: linear-gradient(90deg,#4caf50 0%,#8bc34a 100%); }
     .progress-fill.in-progress { background: linear-gradient(90deg,#ffd54f 0%,#ffeb3b 100%); }
     .progress-fill.not-done { background: linear-gradient(90deg,#ef5350 0%,#e53935 100%); }
+
+    .progress-bar .tick {
+        position: absolute;
+        height: 16px;
+        width: 1px;
+        background: rgba(0, 0, 0, 0.4);
+        top: -4px;
+        z-index: 10;
+        pointer-events: none;
+    }
 
     .tabs {
     display:flex;
@@ -147,7 +158,6 @@ margin-top: 0;
     .course-credits { font-size:13px; color:#666; }
     .course-status { padding:6px 16px; background:white; border:1px solid #ddd; border-radius:4px; font-size:13px; }
 
-    /* New styles for course actions */
     .course-actions {
         display: flex;
         flex-direction: column;
@@ -170,8 +180,6 @@ margin-top: 0;
     .view-details-btn:hover {
         background: #a01629;
     }
-    
-    /* COLLAPSIBLE SECTION STYLES (REMOVED) */
     
     .requirement-card { background:#f9f9f9; padding:20px; margin-bottom:15px; border-radius:4px; border-left:4px solid #c41e3a; }
     .requirement-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
@@ -209,7 +217,6 @@ margin-top: 0;
 
     .completion-summary { background:#f9f9f9; padding:15px; border-radius:4px; border-left:4px solid #c41e3a; display:flex; justify-content:space-between; align-items:center; font-weight:600; }
 
-    /* STYLING FOR RETURN BUTTON */
     .return-link { 
         padding: 8px 20px; 
         background: #c41e3a; 
@@ -247,7 +254,7 @@ margin-top: 0;
     .modal-content { background:white; padding:30px; border-radius:8px; max-width:400px; width:90%; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
     .modal-title { font-size:20px; font-weight:600; margin-bottom:15px; color:#4caf50; }
     .modal-message { font-size:14px; color:#666; margin-bottom:20px; line-height:1.5; }
-    .modal-close-btn { padding:10px 30px; background:#c41e3a; color:white; border:none; border-radius:4px; cursor:pointer; font-size:14px; font-weight:500; }
+    .modal-close-btn { padding:10px 30px; background: #c41e3a; color:white; border:none; border-radius:4px; cursor:pointer; font-size:14px; font-weight:500; }
     .modal-close-btn:hover { background:#a01629; }
 
     @media (max-width: 1100px) {

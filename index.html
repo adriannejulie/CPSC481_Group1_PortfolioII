@@ -25,7 +25,7 @@
                     <div class="credits">84/159 credits</div>
                 </div>
             </div>
-            <div class="progress-bar">
+            <div class="progress-bar" id="overallProgressBar">
                 <div class="progress-fill completed" id="completedProgress"></div>
                 <div class="progress-fill in-progress" id="inProgressProgress"></div>
                 <div class="progress-fill not-done" id="notDoneProgress"></div>
@@ -114,7 +114,7 @@
 
                     <div class="course-list" style="margin-top: 30px;">
                         <div class="section-title">Winter 2027 Registration (3rd Year)</div>
-                        <div style="font-size: 13px; color:#666; margin-bottom:15px;">15 credits • Upcoming 3rd-year lineup</div>
+                        <div style="font-size:13px; color:#666; margin-bottom:15px;">15 credits • Upcoming 3rd-year lineup</div>
 
                         <div class="course-item">
                             <div class="course-info">
@@ -190,7 +190,7 @@
                 <div id="requirements-content" class="hidden">
                     <div class="section-title">Degree Requirements Overview</div>
                     <p class="requirements-description" style="font-size:14px; color:#555; margin-bottom:25px;">
-                        This section tracks your overall progress toward graduation, breaking down the specific categories of courses you need to complete. Your degree requires satisfying four main buckets: Major, Minor, Technical Electives, and COST options.
+                        This section tracks your overall progress toward graduation, breaking down the specific categories of courses you need to complete. Your degree requires satisfying four main buckets: **Major**, **Minor**, **Technical Electives**, and **COST options**.
                     </p>
                     
                     <div class="requirement-card">
@@ -199,7 +199,7 @@
                             <button class="view-btn" onclick="showMajorRequirements()">Open Major Requirements</button>
                         </div>
                         <div class="requirement-progress">
-                            <div class="progress-bar">
+                            <div class="progress-bar" id="majorProgressBar">
                                 <div class="progress-fill completed" id="majorCompletedProgress"></div>
                                 <div class="progress-fill in-progress" id="majorInProgressProgress"></div>
                                 <div class="progress-fill not-done" id="majorNotDoneProgress"></div>
@@ -213,7 +213,7 @@
                             <button class="view-btn" onclick="showMinorRequirements()">Open Minor Requirements</button>
                         </div>
                         <div class="requirement-progress">
-                            <div class="progress-bar">
+                            <div class="progress-bar" id="minorProgressBar">
                                 <div class="progress-fill completed" id="minorCompletedProgress"></div>
                                 <div class="progress-fill in-progress" id="minorInProgressProgress"></div>
                                 <div class="progress-fill not-done" id="minorNotDoneProgress"></div>
@@ -226,7 +226,7 @@
                             <div class="requirement-title">Technical Electives</div>
                             <button class="view-btn" onclick="showTechnicalElectives()">Explore Technical Electives Requirements</button>
                         </div>
-                        <div class="progress-bar">
+                        <div class="progress-bar" id="techProgressBar">
                             <div class="progress-fill completed" id="techCompletedProgress"></div>
                             <div class="progress-fill in-progress" id="techInProgressProgress"></div>
                             <div class="progress-fill not-done" id="techNotDoneProgress"></div>
@@ -238,7 +238,7 @@
                             <div class="requirement-title">COST Electives</div>
                             <button class="view-btn" onclick="showCOSTElectives()">Explore COST Requirements</button>
                         </div>
-                        <div class="progress-bar">
+                        <div class="progress-bar" id="costProgressBar">
                             <div class="progress-fill completed" id="costCompletedProgress"></div>
                             <div class="progress-fill in-progress" id="costInProgressProgress"></div>
                             <div class="progress-fill not-done" id="costNotDoneProgress"></div>
@@ -351,7 +351,7 @@
                 </div>
 
                 <div id="minor-requirements-content" class="hidden">
-                    <div style="margin-bottom: 20px;">
+                    <div style="margin-bottom:20px;">
                         <a href="#" class="return-link" onclick="showTab('requirements'); return false;">← Return</a>
                     </div>
                     
@@ -683,7 +683,6 @@
 
         };
 
-        // Course information data
         const courseInfo = {
             'ENSF 300': {
                 name: 'Programming Fundamentals for Software Engineers',
@@ -862,7 +861,6 @@
                 userTaken: null
             },
 
-            // Added new courses from the Overview page's current and planned lists (with placeholders for descriptions)
             'ENSF 462': {
                 name: 'Software Architecture',
                 description: 'Covers fundamental software architecture styles, design principles, and analysis methods for building complex, reliable software systems.',
@@ -929,12 +927,10 @@
             },
         };
 
-        // Default course info for courses not in the database
         function getCourseInfo(courseCode) {
             if (courseInfo[courseCode]) {
                 return courseInfo[courseCode];
             }
-            // Return default info for unknown courses
             return {
                 name: `${courseCode} - Course Information`,
                 description: 'Course description not available. Please consult the course catalog for more information.',
@@ -947,7 +943,7 @@
 
         function prerequisitesSatisfied(courseCode) {
             const list = prereqs[courseCode];
-            if (!list || list.length === 0) return true; // no prereqs -> satisfied
+            if (!list || list.length === 0) return true;
             return list.every(c => completedCourses.includes(c));
         }
 
@@ -995,7 +991,6 @@
         function makeBoxesDroppable() {
             const grids = document.querySelectorAll('.course-grid');
             grids.forEach(grid => {
-                // add slot boxes until there are 5 slots
                 while (grid.children.length < 5) {
                     const slot = document.createElement('div');
                     slot.className = 'course-box slot';
@@ -1041,7 +1036,6 @@
             box.textContent = courseCode;
             box.dataset.course = courseCode;
             
-            // Add course name for tooltip
             const info = getCourseInfo(courseCode);
             box.dataset.courseName = info.name;
 
@@ -1053,14 +1047,11 @@
                 box.classList.add('red');
             }
 
-            // if course has no prereqs and not in prereqs object, default to green
             if (!prereqs[courseCode]) {
-                // treat unknown course as no prereqs
                 box.classList.remove('red', 'yellow', 'slot');
                 box.classList.add('green');
             }
 
-            // ensure clicking opens course modal
             box.onclick = () => {
                 const course = box.dataset.course || box.textContent.trim();
                 if (!course || course === 'SLOT') return;
@@ -1070,9 +1061,9 @@
 
         window.addEventListener('DOMContentLoaded', () => {
 
-            const totalCredits = 159; // 53 total course slots (40 Major + 4 Minor + 3 Tech + 6 COST) * 3 credits
-            const completedCredits = 69; // 23 completed courses * 3 credits
-            const inProgressCredits = 15; // 5 in-progress courses * 3 credits (ENSF 460, 461, 462, ENEL 480, ENEL 461)
+            const totalCredits = 159;
+            const completedCredits = 69;
+            const inProgressCredits = 15;
             const notDoneCredits = totalCredits - completedCredits - inProgressCredits;
             const completedPercent = (completedCredits / totalCredits) * 100;
             const inProgressPercent = (inProgressCredits / totalCredits) * 100;
@@ -1107,15 +1098,37 @@
             makeBoxesDroppable();
             renderSearchList();
             
-            // Add event listener for date input to refresh time slots
             const dateInput = document.querySelector('.date-input');
             if (dateInput) {
                 dateInput.addEventListener('change', () => {
                     renderTimeSlots();
-                    selectedTimeSlot = null; // Clear selection when date changes
+                    selectedTimeSlot = null;
                 });
             }
+        
+            renderTicks('overallProgressBar', 53); 
+            renderTicks('majorProgressBar', 40); 
+            renderTicks('minorProgressBar', 4); 
+            renderTicks('techProgressBar', 3); 
+            renderTicks('costProgressBar', 6);
         });
+
+        function renderTicks(progressBarId, totalCourses) {
+            const progressBar = document.getElementById(progressBarId);
+            if (!progressBar) return;
+            
+            progressBar.querySelectorAll('.tick').forEach(tick => tick.remove());
+
+            const tickCount = parseInt(totalCourses, 10);
+            for (let i = 1; i < tickCount; i++) {
+                const tick = document.createElement('div');
+                tick.className = 'tick';
+                const percentage = (i / tickCount) * 100;
+                tick.style.left = `${percentage}%`;
+                progressBar.appendChild(tick);
+            }
+        }
+
 
         function showTab(tabName) {
             const sections = [
@@ -1137,7 +1150,6 @@
                 renderTimeSlots();
             }
 
-            // update tab active class
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             document.querySelector(`.tab[onclick="showTab('${tabName}')"]`)?.classList.add('active');
         }
@@ -1181,22 +1193,22 @@
             
             let content = `
                 <div style="margin-bottom: 20px;">
-                    <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">Course Description</div>
+                    <div style="font-weight: 600; font-size: 14px; color: #c41e3a;">Course Description</div>
                     <div style="font-size: 14px; color: #666; line-height: 1.6;">${info.description}</div>
                 </div>
                 
                 <div style="margin-bottom: 20px;">
-                    <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">Credits</div>
+                    <div style="font-weight: 600; font-size: 14px; color: #c41e3a;">Credits</div>
                     <div style="font-size: 14px; color: #666;">${info.credits} Credits</div>
                 </div>
                 
                 <div style="margin-bottom: 20px;">
-                    <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">Recent Professors</div>
+                    <div style="font-weight: 600; font-size: 14px; color: #c41e3a;">Recent Professors</div>
                     <div style="font-size: 14px; color: #666;">${info.professors.join(', ')}</div>
                 </div>
                 
                 <div style="margin-bottom: 20px;">
-                    <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">Recent Offerings</div>
+                    <div style="font-weight: 600; font-size: 14px; color: #c41e3a;">Recent Offerings</div>
                     <div style="font-size: 14px; color: #666;">${info.recentOfferings.join(', ')}</div>
                 </div>
             `;
@@ -1204,7 +1216,7 @@
             if (info.userTaken) {
                 content += `
                     <div style="margin-bottom: 20px;">
-                        <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">When You Took This Course</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #c41e3a;">When You Took This Course</div>
                         <div style="font-size: 14px; color: #4caf50; font-weight: 500;">${info.userTaken}</div>
                     </div>
                 `;
@@ -1213,7 +1225,7 @@
             if (prereqList.length > 0) {
                 content += `
                     <div style="margin-bottom: 20px;">
-                        <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">Prerequisites</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #c41e3a;">Prerequisites</div>
                         <div style="font-size: 14px; color: #666;">
                 `;
                 prereqList.forEach(prereq => {
@@ -1226,7 +1238,7 @@
             } else {
                 content += `
                     <div style="margin-bottom: 20px;">
-                        <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">Prerequisites</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #c41e3a;">Prerequisites</div>
                         <div style="font-size: 14px; color: #666;">No prerequisites required</div>
                     </div>
                 `;
@@ -1249,7 +1261,6 @@
             document.getElementById('courseModal').classList.remove('active');
         }
 
-        // Close modal when clicking outside
         document.addEventListener('click', (e) => {
             const courseModal = document.getElementById('courseModal');
             if (e.target === courseModal) {
@@ -1257,9 +1268,9 @@
             }
         });
 
-        const totalCredits = 159; // 53 total course slots (40 Major + 4 Minor + 3 Tech + 6 COST) * 3 credits
-        const completedCredits = 69; // 23 completed courses * 3 credits
-        const inProgressCredits = 15; // 5 in-progress courses * 3 credits (ENSF 460, 461, 462, ENEL 480, ENEL 461)
+        const totalCredits = 159;
+        const completedCredits = 69;
+        const inProgressCredits = 15;
         const notDoneCredits = totalCredits - completedCredits - inProgressCredits;
 
         const completedPercent = (completedCredits / totalCredits) * 100;
@@ -1270,9 +1281,9 @@
         document.getElementById('inProgressProgress').style.width = inProgressPercent + '%';
         document.getElementById('notDoneProgress').style.width = notDonePercent + '%';
 
-        const majorTotalCredits = 120; // 40 Major slots * 3 credits
-        const majorCompletedCredits = 87; // Adjusted for visual equality (~72.5%)
-        const majorInProgressCredits = 6; // Adjusted to spread the bar more evenly
+        const majorTotalCredits = 120;
+        const majorCompletedCredits = 87;
+        const majorInProgressCredits = 6;
         const majorNotDoneCredits = majorTotalCredits - majorCompletedCredits - majorInProgressCredits;
 
         const majorCompletedPercent = (majorCompletedCredits / majorTotalCredits) * 100;
@@ -1283,9 +1294,9 @@
         document.getElementById('majorInProgressProgress').style.width = majorInProgressPercent + '%';
         document.getElementById('majorNotDoneProgress').style.width = majorNotDonePercent + '%';
 
-        const minorTotalCredits = 12; // 4 Minor slots * 3 credits
-        const minorCompletedCredits = 9; // Adjusted for visual equality (75%)
-        const minorInProgressCredits = 0; 
+        const minorTotalCredits = 12;
+        const minorCompletedCredits = 9;
+        const minorInProgressCredits = 0;
         const minorNotDoneCredits = minorTotalCredits - minorCompletedCredits - minorInProgressCredits;
 
         const minorCompletedPercent = (minorCompletedCredits / minorTotalCredits) * 100;
@@ -1296,8 +1307,8 @@
         document.getElementById('minorInProgressProgress').style.width = minorInProgressPercent + '%';
         document.getElementById('minorNotDoneProgress').style.width = minorNotDonePercent + '%';
 
-        const techTotalCredits = 9; // 3 Tech slots * 3 credits
-        const techCompletedCredits = 6; // Adjusted for visual equality (~66.7%)
+        const techTotalCredits = 9;
+        const techCompletedCredits = 6;
         const techInProgressCredits = 0;
         const techNotDoneCredits = techTotalCredits - techCompletedCredits - techInProgressCredits;
 
@@ -1309,9 +1320,9 @@
         document.getElementById('techInProgressProgress').style.width = techInProgressPercent + '%';
         document.getElementById('techNotDoneProgress').style.width = techNotDonePercent + '%';
 
-        const costTotalCredits = 18; // 6 COST slots * 3 credits (Note: original HTML had a 2-credit course but overall total is now based on 3-credit structure)
-        const costCompletedCredits = 12; // Adjusted for visual equality (~66.7%)
-        const costInProgressCredits = 0; 
+        const costTotalCredits = 18;
+        const costCompletedCredits = 12;
+        const costInProgressCredits = 0;
         const costNotDoneCredits = costTotalCredits - costCompletedCredits - costInProgressCredits;
 
         const costCompletedPercent = (costCompletedCredits / costTotalCredits) * 100;
@@ -1345,7 +1356,6 @@
             selectedTimeSlot = timeSlot;
         }
 
-        // All available time slots
         const allTimeSlots = [
             '9:00 AM - 10:00 AM',
             '10:00 AM - 11:00 AM',
@@ -1405,7 +1415,7 @@
             appointments.splice(index, 1);
             localStorage.setItem('bookedAppointments', JSON.stringify(appointments));
             renderBookedAppointments();
-            renderTimeSlots(); // Refresh time slots when an appointment is cancelled
+            renderTimeSlots();
         }
 
         function renderBookedAppointments() {
@@ -1461,7 +1471,6 @@
             
             const deptName = document.getElementById('departmentSelect').options[document.getElementById('departmentSelect').selectedIndex].text;
             
-            // Save the appointment
             const appointment = {
                 department: deptName,
                 date: formattedDate,
@@ -1480,10 +1489,9 @@
             
             document.getElementById('bookingModal').classList.add('active');
             
-            // Refresh the bookings list and time slots
             renderBookedAppointments();
             renderTimeSlots();
-            selectedTimeSlot = null; // Clear selection after booking
+            selectedTimeSlot = null;
         }
 
         function closeModal() {
@@ -1492,7 +1500,6 @@
             document.getElementById('departmentSelect').value = '';
             selectedTimeSlot = null;
             
-            // Refresh time slots to clear any selection highlighting
             renderTimeSlots();
         }
 
