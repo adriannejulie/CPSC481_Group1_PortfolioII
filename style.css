@@ -77,8 +77,9 @@
     display:flex; 
     margin-top:10px; 
     }
+
 .requirement-progress .progress-bar {
-margin-top: 0;
+    margin-top: 0;
 }
 
     .progress-fill {
@@ -96,7 +97,7 @@ margin-top: 0;
     }
     .tab {
     flex:1;
-    padding:15px;
+    padding:15px; 
     text-align:center;
     cursor:pointer;
     background:#f5f5f5;
@@ -147,7 +148,6 @@ margin-top: 0;
     .course-credits { font-size:13px; color:#666; }
     .course-status { padding:6px 16px; background:white; border:1px solid #ddd; border-radius:4px; font-size:13px; }
 
-    /* New styles for course actions */
     .course-actions {
         display: flex;
         flex-direction: column;
@@ -170,8 +170,57 @@ margin-top: 0;
     .view-details-btn:hover {
         background: #a01629;
     }
-    /* End new styles */
+    
+    .collapsible-section {
+        margin-top: 30px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+    }
 
+    .collapsible-header {
+        padding: 15px;
+        background: #e0e0e0;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .collapsible-header:hover {
+        background: #d4d4d4;
+    }
+
+    .collapse-icon {
+        font-size: 16px;
+        transition: transform 0.3s ease;
+    }
+
+    .collapse-icon.rotated {
+        transform: rotate(-90deg);
+    }
+
+    .collapsible-content {
+        padding: 15px;
+        border-top: none;
+    }
+    .collapsible-content.hidden {
+        display: none;
+    }
+
+    .course-item.completed-item {
+        background: #e8f5e9;
+        border-left-color: #4caf50;
+    }
+    .view-details-btn.completed-btn {
+        background: #4caf50;
+    }
+    .view-details-btn.completed-btn:hover {
+        background: #388e3c;
+    }
+    
     .requirement-card { background:#f9f9f9; padding:20px; margin-bottom:15px; border-radius:4px; border-left:4px solid #c41e3a; }
     .requirement-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
     .requirement-title { font-weight:600; font-size:15px; }
@@ -207,8 +256,24 @@ margin-top: 0;
     .elective-status { font-size:13px; font-weight:500; }
 
     .completion-summary { background:#f9f9f9; padding:15px; border-radius:4px; border-left:4px solid #c41e3a; display:flex; justify-content:space-between; align-items:center; font-weight:600; }
-    .return-link { color:#c41e3a; text-decoration:none; font-size:14px; font-weight:500; }
-    .return-link:hover { text-decoration:underline; }
+
+    .return-link { 
+        padding: 8px 20px; 
+        background: #c41e3a; 
+        color: white; 
+        border: none; 
+        border-radius: 4px; 
+        cursor: pointer; 
+        font-size: 13px; 
+        font-weight: 500; 
+        text-decoration: none; 
+        display: inline-block; 
+        transition: background 0.2s;
+    }
+    .return-link:hover { 
+        background: #a01629;
+        text-decoration: none; 
+    }
 
     .advising-section { background:white; padding:20px; border-radius:4px; margin-bottom:20px; }
 
