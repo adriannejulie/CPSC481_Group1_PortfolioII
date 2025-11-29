@@ -182,12 +182,59 @@
                         </div>
 
                     </div>
-                </div>
+
+                    <div class="collapsible-section">
+                        <div class="collapsible-header" onclick="toggleCompletedCourses()">
+                            <div class="section-title" style="margin-bottom: 0;">Past Completed Courses (23 Courses)</div>
+                            <span class="collapse-icon">▼</span>
+                        </div>
+                        <div id="completedCoursesContent" class="collapsible-content hidden">
+                            <div class="course-list" id="completedCoursesList">
+                                <div class="course-item completed-item">
+                                    <div class="course-info">
+                                        <div class="course-code">CHEM 209</div>
+                                        <div class="course-name">Chemistry for Engineers</div>
+                                        <div class="course-credits">3 Credits • Fall 2023</div>
+                                    </div>
+                                    <div class="course-actions">
+                                        <div class="course-status">Completed</div>
+                                        <button class="view-details-btn completed-btn" onclick="showCourseModal('CHEM 209')">View Details</button>
+                                    </div>
+                                </div>
+                                <div class="course-item completed-item">
+                                    <div class="course-info">
+                                        <div class="course-code">ENSF 300</div>
+                                        <div class="course-name">Programming Fundamentals</div>
+                                        <div class="course-credits">3 Credits • Fall 2024</div>
+                                    </div>
+                                    <div class="course-actions">
+                                        <div class="course-status">Completed</div>
+                                        <button class="view-details-btn completed-btn" onclick="showCourseModal('ENSF 300')">View Details</button>
+                                    </div>
+                                </div>
+                                <div class="course-item completed-item">
+                                    <div class="course-info">
+                                        <div class="course-code">MATH 275</div>
+                                        <div class="course-name">Calculus for Engineers</div>
+                                        <div class="course-credits">3 Credits • Fall 2023</div>
+                                    </div>
+                                    <div class="course-actions">
+                                        <div class="course-status">Completed</div>
+                                        <button class="view-details-btn completed-btn" onclick="showCourseModal('MATH 275')">View Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="font-size:13px; color:#666; margin-top:10px;">Showing 3 of 23 completed courses (Full list requires application logic expansion).</div>
+                        </div>
+                    </div>
+                    </div>
 
 
                 <div id="requirements-content" class="hidden">
-                    <div class="section-title">Major Requirements: Software Engineering</div>
-                    
+                    <div class="section-title">Degree Requirements Overview</div>
+                    <p class="requirements-description" style="font-size:14px; color:#555; margin-bottom:25px;">
+                        This section tracks your overall progress toward graduation, breaking down the specific categories of courses you need to complete. Your degree requires satisfying four main buckets: Major, Minor, Technical Electives, and General/Breadth Electives (COST).
+                    </p>
                     
                     <div class="requirement-card">
                         <div class="requirement-header">
@@ -250,6 +297,9 @@
                             </div>
                             
                             <div class="section-title">Major Requirements: Software Engineering</div>
+                            <p class="requirements-description" style="font-size:14px; color:#555; margin-bottom:25px;">
+                                These are the core, mandatory courses for your degree program. They provide the foundational knowledge and advanced skills specific to Software Engineering, defining your primary area of study.
+                            </p>
 
                             <div class="year-section">
                                 <div class="year-title">Year: 1st</div>
@@ -349,6 +399,9 @@
                     </div>
                     
                     <div class="section-title">Minor: Mechatronics Engineering</div>
+                    <p class="requirements-description" style="font-size:14px; color:#555; margin-bottom:25px;">
+                        A Minor is a secondary concentration requiring a smaller set of courses outside your Major. It allows you to develop specialized knowledge in a complementary field, like Mechatronics Engineering.
+                    </p>
 
                     <div class="elective-item completed">
                         <div style="flex: 1;">
@@ -411,6 +464,9 @@
                     </div>
                     
                     <div class="section-title">Technical Electives</div>
+                    <p class="requirements-description" style="font-size:14px; color:#555; margin-bottom:25px;">
+                        These are upper-level, specialized courses, usually within your faculty, that allow you to customize your degree. They let you explore advanced topics or niche areas of engineering beyond the mandatory core.
+                    </p>
 
                     <div class="elective-item incomplete">
                         <div style="flex: 1;">
@@ -460,6 +516,9 @@
                     </div>
                     
                     <div class="section-title">COST Electives</div>
+                    <p class="requirements-description" style="font-size:14px; color:#555; margin-bottom:25px;">
+                        COST courses (or similar General Education/Breadth Requirements) ensure you develop essential skills outside of pure engineering, such as critical thinking, communication, and understanding the social impact of technology.
+                    </p>
 
                     <div class="elective-item completed">
                         <div style="flex: 1;">
@@ -1240,6 +1299,14 @@
                 closeCourseModal();
             }
         });
+
+        function toggleCompletedCourses() {
+            const content = document.getElementById('completedCoursesContent');
+            const icon = document.querySelector('.collapsible-header .collapse-icon');
+            
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotated');
+        }
 
         const totalCredits = 159; // 53 total course slots (40 Major + 4 Minor + 3 Tech + 6 COST) * 3 credits
         const completedCredits = 69; // 23 completed courses * 3 credits
