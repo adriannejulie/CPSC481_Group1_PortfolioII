@@ -1,4 +1,4 @@
-    * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -77,6 +77,9 @@
     display:flex; 
     margin-top:10px; 
     }
+.requirement-progress .progress-bar {
+margin-top: 0;
+}
 
     .progress-fill {
     height: 100%;
@@ -109,6 +112,16 @@
     display: flex;
     gap: 24px;
     padding: 30px;
+    align-items: flex-start;
+    }
+    .major-layout {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    }
+    .major-main {
+    flex: 1 1 0;
+    min-width: 0;
     }
     .main-area { flex: 1 1 0; min-width: 0; }
     .sidebar {
@@ -120,6 +133,7 @@
     border-radius: 6px;
     align-self: flex-start;
     height: fit-content;
+    flex-shrink: 0;
     }
 
     .course-list { margin-bottom: 20px; }
@@ -132,6 +146,31 @@
     .course-code { font-weight:600; font-size:14px; margin-bottom:4px; }
     .course-credits { font-size:13px; color:#666; }
     .course-status { padding:6px 16px; background:white; border:1px solid #ddd; border-radius:4px; font-size:13px; }
+
+    /* New styles for course actions */
+    .course-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+    }
+
+    .view-details-btn {
+        padding: 6px 16px;
+        background: #c41e3a;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 500;
+        transition: background 0.2s;
+    }
+
+    .view-details-btn:hover {
+        background: #a01629;
+    }
+    /* End new styles */
 
     .requirement-card { background:#f9f9f9; padding:20px; margin-bottom:15px; border-radius:4px; border-left:4px solid #c41e3a; }
     .requirement-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
@@ -193,13 +232,14 @@
     .modal-close-btn { padding:10px 30px; background:#c41e3a; color:white; border:none; border-radius:4px; cursor:pointer; font-size:14px; font-weight:500; }
     .modal-close-btn:hover { background:#a01629; }
 
-    .tab:hover,
-    .view-btn:hover,
-    .advising-section {
-        background: white;
-        padding: 20px;
-        border-radius: 4px;
-        margin-bottom: 20px;
+    @media (max-width: 1100px) {
+        .major-layout {
+            flex-direction: column;
+        }
+        .sidebar {
+            width: 100%;
+            max-width: 100%;
+        }
     }
 
     .appointment-header {
@@ -342,4 +382,42 @@
         background: #c62828;
     }
 
+    .course-box[data-course-name]:hover::after {
+        content: attr(data-course-name);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #333;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        z-index: 1000;
+        margin-bottom: 5px;
+        pointer-events: none;
+        opacity: 0;
+        animation: fadeInTooltip 0.2s forwards;
+    }
 
+    @keyframes fadeInTooltip {
+        to {
+            opacity: 1;
+        }
+    }
+
+    .course-box[data-course-name]:hover::before {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 5px solid transparent;
+        border-top-color: #333;
+        z-index: 1000;
+        margin-bottom: -5px;
+        pointer-events: none;
+        opacity: 0;
+        animation: fadeInTooltip 0.2s forwards;
+    }

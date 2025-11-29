@@ -18,11 +18,11 @@
             <div class="student-info">
                 <div>
                     <div class="student-name">John Doe</div>
-                    <div class="student-details">Software Engineering - 2nd year - ID: 30174478</div>
+                    <div class="student-details">Software Engineering - 3rd year - ID: 30174478</div>
                 </div>
                 <div class="gpa-info">
                     <div class="gpa">GPA: 0.67</div>
-                    <div class="credits">41/67 credits</div>
+                    <div class="credits">84/159 credits</div>
                 </div>
             </div>
             <div class="progress-bar">
@@ -43,53 +43,144 @@
             <div class="main-area">
                 <div id="overview-content">
                     <div class="course-list">
-                        <div class="section-title">Current semester Courses:</div>
-                        <div style="font-size:13px; color:#666; margin-bottom:15px;">12 credits enrolled/in progress</div>
+                        <div class="section-title">Current Semester Courses (Fall 2026 - 3rd Year)</div>
+                        <div style="font-size:13px; color:#666; margin-bottom:15px;">15 credits • Core 3rd-year workload</div>
                         
                         <div class="course-item">
                             <div class="course-info">
-                                <div class="course-code">ENSP 67</div>
-                                <div class="course-name">Introduction to Software Engineering Principles</div>
-                                <div class="course-instructor">Dr. Sarah Johnson</div>
+                                <div class="course-code">ENSF 460</div>
+                                <div class="course-name">Object Oriented Design</div>
+                                <div class="course-instructor">Dr. Patrick Mahomes</div>
                                 <div class="course-credits">3 Credits</div>
                             </div>
-                            <div class="course-status">Enrolled</div>
+                            <div class="course-actions">
+                                <div class="course-status">In Progress</div>
+                                <button class="view-details-btn" onclick="showCourseModal('ENSF 460')">View Details</button>
+                            </div>
                         </div>
 
                         <div class="course-item">
                             <div class="course-info">
-                                <div class="course-code">ENGF 41</div>
-                                <div class="course-name">Engineering Fundamentals</div>
-                                <div class="course-instructor">Prof. Michael Chen</div>
+                                <div class="course-code">ENSF 461</div>
+                                <div class="course-name">Software Product Management</div>
+                                <div class="course-instructor">Dr. Michael Jordan</div>
                                 <div class="course-credits">3 Credits</div>
                             </div>
-                            <div class="course-status">Enrolled</div>
+                            <div class="course-actions">
+                                <div class="course-status">In Progress</div>
+                                <button class="view-details-btn" onclick="showCourseModal('ENSF 461')">View Details</button>
+                            </div>
+                        </div>
+
+                        <div class="course-item">
+                            <div class="course-info">
+                                <div class="course-code">ENSF 462</div>
+                                <div class="course-name">Software Architecture</div>
+                                <div class="course-instructor">Dr. Lebron James</div>
+                                <div class="course-credits">3 Credits</div>
+                            </div>
+                            <div class="course-actions">
+                                <div class="course-status">In Progress</div>
+                                <button class="view-details-btn" onclick="showCourseModal('ENSF 462')">View Details</button>
+                            </div>
+                        </div>
+
+                        <div class="course-item">
+                            <div class="course-info">
+                                <div class="course-code">ENEL 480</div>
+                                <div class="course-name">Computer Hardware</div>
+                                <div class="course-instructor">Dr. Tom Brady</div>
+                                <div class="course-credits">3 Credits</div>
+                            </div>
+                            <div class="course-actions">
+                                <div class="course-status">In Progress</div>
+                                <button class="view-details-btn" onclick="showCourseModal('ENEL 480')">View Details</button>
+                            </div>
+                        </div>
+
+                        <div class="course-item">
+                            <div class="course-info">
+                                <div class="course-code">ENEL 461</div>
+                                <div class="course-name">Electrical Circuits and Power</div>
+                                <div class="course-instructor">Dr. JJ Watt</div>
+                                <div class="course-credits">3 Credits</div>
+                            </div>
+                            <div class="course-actions">
+                                <div class="course-status">In Progress</div>
+                                <button class="view-details-btn" onclick="showCourseModal('ENEL 461')">View Details</button>
+                            </div>
                         </div>
                     </div>
 
                     <div class="course-list" style="margin-top: 30px;">
-                        <div class="section-title">Winter 2026 Courses:</div>
-                        <div style="font-size: 13px; color: #666; margin-bottom: 15px;">6 credits enrolled/in progress</div>
+                        <div class="section-title">Winter 2027 Registration (3rd Year)</div>
+                        <div style="font-size: 13px; color: #666; margin-bottom: 15px;">15 credits • Upcoming 3rd-year lineup</div>
 
                         <div class="course-item">
                             <div class="course-info">
-                                <div class="course-code">COMS 367</div>
-                                <div class="course-name">Advanced Communication Systems</div>
-                                <div class="course-instructor">Dr. Emily Roberts</div>
+                                <div class="course-code">ENSF 400</div>
+                                <div class="course-name">Software Engineering Project Management 2</div>
+                                <div class="course-instructor">Dr. Devante Adams </div>
                                 <div class="course-credits">3 Credits</div>
                             </div>
-                            <div class="course-status">Enrolled</div>
+                            <div class="course-actions">
+                                <div class="course-status">Planned</div>
+                                <button class="view-details-btn" onclick="showCourseModal('ENSF 400')">View Details</button>
+                            </div>
                         </div>
 
                         <div class="course-item">
                             <div class="course-info">
-                                <div class="course-code">RELS 341</div>
-                                <div class="course-name">World Religions and Ethics</div>
-                                <div class="course-instructor">Prof. David Martinez</div>
+                                <div class="course-code">ENSF 444</div>
+                                <div class="course-name">Software Design Patterns</div>
+                                <div class="course-instructor">Dr. Dwayne Wade</div>
                                 <div class="course-credits">3 Credits</div>
                             </div>
-                            <div class="course-status">Enrolled</div>
+                            <div class="course-actions">
+                                <div class="course-status">Planned</div>
+                                <button class="view-details-btn" onclick="showCourseModal('ENSF 444')">View Details</button>
+                            </div>
                         </div>
+
+                        <div class="course-item">
+                            <div class="course-info">
+                                <div class="course-code">ENSF 401</div>
+                                <div class="course-name">Software Testing and Quality Assurance</div>
+                                <div class="course-instructor">Dr. Lamar Jackson</div>
+                                <div class="course-credits">3 Credits</div>
+                            </div>
+                            <div class="course-actions">
+                                <div class="course-status">Planned</div>
+                                <button class="view-details-btn" onclick="showCourseModal('ENSF 401')">View Details</button>
+                            </div>
+                        </div>
+
+                        <div class="course-item">
+                            <div class="course-info">
+                                <div class="course-code">SENG 438</div>
+                                <div class="course-name">Machine Learning</div>
+                                <div class="course-instructor">Dr. Kyler Murray</div>
+                                <div class="course-credits">3 Credits</div>
+                            </div>
+                            <div class="course-actions">
+                                <div class="course-status">Planned</div>
+                                <button class="view-details-btn" onclick="showCourseModal('SENG 438')">View Details</button>
+                            </div>
+                        </div>
+
+                        <div class="course-item">
+                            <div class="course-info">
+                                <div class="course-code">ENSF 441</div>
+                                <div class="course-name">Software Reverse Engineering</div>
+                                <div class="course-instructor">Dr. Tua Tagovailoa</div>
+                                <div class="course-credits">3 Credits</div>
+                            </div>
+                            <div class="course-actions">
+                                <div class="course-status">Planned</div>
+                                <button class="view-details-btn" onclick="showCourseModal('ENSF 441')">View Details</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -101,7 +192,7 @@
                     <div class="requirement-card">
                         <div class="requirement-header">
                             <div class="requirement-title">Major Requirements: Software Engineering</div>
-                            <button class="view-btn" onclick="showMajorRequirements()">View</button>
+                            <button class="view-btn" onclick="showMajorRequirements()">Open Major Requirements</button>
                         </div>
                         <div class="requirement-progress">
                             <div class="progress-bar">
@@ -115,7 +206,7 @@
                     <div class="requirement-card">
                         <div class="requirement-header">
                             <div class="requirement-title">Minor Requirements: Mechatronics Engineering</div>
-                            <button class="view-btn" onclick="showMinorRequirements()">View</button>
+                            <button class="view-btn" onclick="showMinorRequirements()">Open Minor Requirements</button>
                         </div>
                         <div class="requirement-progress">
                             <div class="progress-bar">
@@ -129,7 +220,7 @@
                     <div class="requirement-card">
                         <div class="requirement-header">
                             <div class="requirement-title">Technical Electives</div>
-                            <button class="view-btn" onclick="showTechnicalElectives()">View</button>
+                            <button class="view-btn" onclick="showTechnicalElectives()">Explore Technical Electives Requirements</button>
                         </div>
                         <div class="progress-bar">
                             <div class="progress-fill completed" id="techCompletedProgress"></div>
@@ -141,97 +232,114 @@
                     <div class="requirement-card">
                         <div class="requirement-header">
                             <div class="requirement-title">COST Electives</div>
-                            <button class="view-btn" onclick="showCOSTElectives()">View</button>
+                            <button class="view-btn" onclick="showCOSTElectives()">Explore COST Requirements</button>
                         </div>
                         <div class="progress-bar">
                             <div class="progress-fill completed" id="costCompletedProgress"></div>
                             <div class="progress-fill in-progress" id="costInProgressProgress"></div>
                             <div class="progress-fill not-done" id="costNotDoneProgress"></div>
-                        </div>
+                            </div>
                     </div>
                 </div>
 
                 <div id="major-requirements-content" class="hidden">
-                    <div style="margin-bottom:20px;">
-                        <a href="#" class="return-link" onclick="showTab('requirements'); return false;">← Return</a>
-                    </div>
-                    
-                    <div class="section-title">Major Requirements: Software Engineering</div>
+                    <div class="major-layout">
+                        <div class="major-main">
+                            <div style="margin-bottom:20px;">
+                                <a href="#" class="return-link" onclick="showTab('requirements'); return false;">← Return</a>
+                            </div>
+                            
+                            <div class="section-title">Major Requirements: Software Engineering</div>
 
-                    <div class="year-section">
-                        <div class="year-title">Year: 1st</div>
-                        <div class="course-grid" id="grid-year1">
-                            <div class="course-box green" data-course="CHEM 209">CHEM 209</div>
-                            <div class="course-box green" data-course="ENDG 233">ENDG 233</div>
-                            <div class="course-box green" data-course="MATH 275">MATH 275</div>
-                            <div class="course-box green" data-course="MATH 211">MATH 211</div>
-                            <div class="course-box green" data-course="ENGG 225">ENGG 225</div>
+                            <div class="year-section">
+                                <div class="year-title">Year: 1st</div>
+                                <div class="course-grid" id="grid-year1">
+                                    <div class="course-box green" data-course="CHEM 209">CHEM 209</div>
+                                    <div class="course-box green" data-course="ENDG 233">ENDG 233</div>
+                                    <div class="course-box green" data-course="MATH 275">MATH 275</div>
+                                    <div class="course-box green" data-course="MATH 211">MATH 211</div>
+                                    <div class="course-box green" data-course="ENGG 225">ENGG 225</div>
+                                </div>
+
+                                <div class="course-grid" id="grid-year1-row2">
+                                    <div class="course-box green" data-course="ENGG 201">ENGG 201</div>
+                                    <div class="course-box green" data-course="ENGG 202">ENGG 202</div>
+                                    <div class="course-box green" data-course="MATH 277">MATH 277</div>
+                                    <div class="course-box green" data-course="PHYS 259">PHYS 259</div>
+                                    <div class="course-box green" data-course="ENGG 200">ENGG 200</div>
+                                </div>
+                            </div>
+
+                            <div class="year-section">
+                                <div class="year-title">Year: 2nd</div>
+                                <div class="course-grid" id="grid-year2">
+                                    <div class="course-box green" data-course="ENDG 319">ENDG 319</div>
+                                    <div class="course-box green" data-course="ENSF 300">ENSF 300</div>
+                                    <div class="course-box green" data-course="MATH 375">MATH 375</div>
+                                    <div class="course-box green" data-course="ENSF 337">ENSF 337</div>
+                                    <div class="course-box green" data-course="ENEL 353">ENEL 353</div>
+                                </div>
+
+                                <div class="course-grid" id="grid-year2-row2">
+                                    <div class="course-box green" data-course="MATH 271">MATH 271</div>
+                                    <div class="course-box green" data-course="ENSF 338">ENSF 338</div>
+                                    <div class="course-box green" data-course="ENSF 380">ENSF 380</div>
+                                    <div class="course-box green" data-course="ENSF 381">ENSF 381</div>
+                                    <div class="course-box green" data-course="ENCM 369">ENCM 369</div>
+                                </div>
+                            </div>
+
+                            <div class="year-section">
+                                <div class="year-title">Year: 3rd</div>
+                                <div class="course-grid" id="grid-year3">
+                                    <div class="course-box yellow" data-course="ENSF 460">ENSF 460</div>
+                                    <div class="course-box yellow" data-course="ENSF 461">ENSF 461</div>
+                                    <div class="course-box yellow" data-course="ENSF 462">ENSF 462</div>
+                                    <div class="course-box yellow" data-course="ENSF 480">ENSF 480</div>
+                                    <div class="course-box yellow" data-course="ENME 461">ENME 461</div>
+                                </div>
+
+                                <div class="course-grid" id="grid-year3-row2">
+                                    <div class="course-box yellow" data-course="ENSF 400">ENSF 400</div>
+                                    <div class="course-box yellow" data-course="ENSF 444">ENSF 444</div>
+                                    <div class="course-box yellow" data-course="SENG 401">SENG 401</div>
+                                    <div class="course-box yellow" data-course="SENG 438">SENG 438</div>
+                                    <div class="course-box yellow" data-course="ENEL 441">ENEL 441</div>
+                                </div>
+                            </div>
+
+                            <div class="year-section">
+                                <div class="year-title">Year: 4th</div>
+                                <div class="course-grid" id="grid-year4">
+                                    <div class="course-box red" data-course="ENEL 500A">ENEL 500A</div>
+                                    <div class="course-box red" data-course="SENG 511">SENG 511</div>
+                                    <div class="course-box red" data-course="ENME 561">ENME 561</div>
+                                    <div class="course-box red" data-course="ENEL 500B">ENEL 500B</div>
+                                    <div class="course-box red" data-course="SENG 533">SENG 533</div>
+                                </div>
+
+                                <div class="course-grid" id="grid-year4-row2">
+                                    <div class="course-box yellow" data-course="">COST Option</div>
+                                    <div class="course-box yellow" data-course="">COST Option</div>
+                                    <div class="course-box yellow" data-course="">COST Option</div>
+                                    <div class="course-box yellow" data-course="">COST Option</div>
+                                    <div class="course-box yellow" data-course="">COST Option</div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="course-grid" id="grid-year1-row2">
-                            <div class="course-box green" data-course="ENGG 201">ENGG 201</div>
-                            <div class="course-box green" data-course="ENGG 202">ENGG 202</div>
-                            <div class="course-box green" data-course="MATH 277">MATH 277</div>
-                            <div class="course-box green" data-course="PHYS 259">PHYS 259</div>
-                            <div class="course-box green" data-course="ENGG 200">ENGG 200</div>
-                        </div>
-                    </div>
+                        <aside class="sidebar" id="courseSidebar">
+                            <div class="search-header">
+                                <div class="search-title">Course Search</div>
+                                <div style="font-size:12px;color:#666;">Drag to replace</div>
+                            </div>
 
-                    <div class="year-section">
-                        <div class="year-title">Year: 2nd</div>
-                        <div class="course-grid" id="grid-year2">
-                            <div class="course-box green" data-course="ENDG 319">ENDG 319</div>
-                            <div class="course-box green" data-course="ENSF 300">ENSF 300</div>
-                            <div class="course-box green" data-course="MATH 375">MATH 375</div>
-                            <div class="course-box green" data-course="ENSF 337">ENSF 337</div>
-                            <div class="course-box green" data-course="ENEL 353">ENEL 353</div>
-                        </div>
+                            <input id="courseSearch" class="search-input" placeholder="Search courses (e.g. ENGG 225)" />
 
-                        <div class="course-grid" id="grid-year2-row2">
-                            <div class="course-box green" data-course="MATH 271">MATH 271</div>
-                            <div class="course-box green" data-course="ENSF 338">ENSF 338</div>
-                            <div class="course-box green" data-course="ENSF 380">ENSF 380</div>
-                            <div class="course-box green" data-course="ENSF 381">ENSF 381</div>
-                            <div class="course-box green" data-course="ENCM 369">ENCM 369</div>
-                        </div>
-                    </div>
+                            <div class="search-results" id="searchResults"></div>
 
-                    <div class="year-section">
-                        <div class="year-title">Year: 3rd</div>
-                        <div class="course-grid" id="grid-year3">
-                            <div class="course-box yellow" data-course="ENSF 460">ENSF 460</div>
-                            <div class="course-box yellow" data-course="ENSF 461">ENSF 461</div>
-                            <div class="course-box yellow" data-course="ENSF 462">ENSF 462</div>
-                            <div class="course-box yellow" data-course="ENSF 480">ENSF 480</div>
-                            <div class="course-box yellow" data-course="ENME 461">ENME 461</div>
-                        </div>
-
-                        <div class="course-grid" id="grid-year3-row2">
-                            <div class="course-box yellow" data-course="ENSF 400">ENSF 400</div>
-                            <div class="course-box yellow" data-course="ENSF 444">ENSF 444</div>
-                            <div class="course-box yellow" data-course="SENG 401">SENG 401</div>
-                            <div class="course-box yellow" data-course="SENG 438">SENG 438</div>
-                            <div class="course-box yellow" data-course="ENEL 441">ENEL 441</div>
-                        </div>
-                    </div>
-
-                    <div class="year-section">
-                        <div class="year-title">Year: 4th</div>
-                        <div class="course-grid" id="grid-year4">
-                            <div class="course-box red" data-course="ENEL 500A">ENEL 500A</div>
-                            <div class="course-box red" data-course="SENG 511">SENG 511</div>
-                            <div class="course-box red" data-course="ENME 561">ENME 561</div>
-                            <div class="course-box red" data-course="ENEL 500B">ENEL 500B</div>
-                            <div class="course-box red" data-course="SENG 533">SENG 533</div>
-                        </div>
-
-                        <div class="course-grid" id="grid-year4-row2">
-                            <div class="course-box yellow" data-course="">COST Option</div>
-                            <div class="course-box yellow" data-course="">COST Option</div>
-                            <div class="course-box yellow" data-course="">COST Option</div>
-                            <div class="course-box yellow" data-course="">COST Option</div>
-                            <div class="course-box yellow" data-course="">COST Option</div>
-                        </div>
+                            <div class="small-note">Tip: drag a result onto any course box to replace it. Click a box to view prerequisites.</div>
+                        </aside>
                     </div>
                 </div>
 
@@ -243,53 +351,57 @@
                     <div class="section-title">Minor: Mechatronics Engineering</div>
 
                     <div class="elective-item completed">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">ENME 327</div>
-                            <div class="elective-credits">3 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Mechatronics Systems</div>
+                            <div class="elective-credits">3 Credits • Fall 2024</div>
                         </div>
                         
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Completed</div>
-                            <button class="view-btn" onclick="openPrerequisites('ENME 327')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('ENME 327')">View Details</button>
                         </div>
                     </div>
 
                     <div class="elective-item completed">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">ENEL 301</div>
-                            <div class="elective-credits">3 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Electrical Circuits and Power</div>
+                            <div class="elective-credits">3 Credits • Winter 2024</div>
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Completed</div>
-                            <button class="view-btn" onclick="openPrerequisites('ENEL 301')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('ENEL 301')">View Details</button>
                         </div>
                     </div>
 
                     <div class="elective-item incomplete">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">ENME 455</div>
-                            <div class="elective-credits">3 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Advanced Mechatronics</div>
+                            <div class="elective-credits">3 Credits • Offered: Fall, Winter</div>
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Incomplete</div>
-                            <button class="view-btn" onclick="openPrerequisites('ENME 455')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('ENME 455')">View Details</button>
                         </div>
                     </div>
 
                     <div class="elective-item incomplete">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">ENME 527</div>
-                            <div class="elective-credits">3 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Robotics and Automation</div>
+                            <div class="elective-credits">3 Credits • Offered: Fall, Winter</div>
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Incomplete</div>
-                            <button class="view-btn" onclick="openPrerequisites('ENME 527')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('ENME 527')">View Details</button>
                         </div>
                     </div>
 
                     <div class="completion-summary">
                         <span>Completed</span>
-                        <span>6/12 Credits</span>
+                        <span>9/12 Credits</span>
                     </div>
                 </div>
 
@@ -301,41 +413,44 @@
                     <div class="section-title">Technical Electives</div>
 
                     <div class="elective-item incomplete">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">TECH 401</div>
-                            <div class="elective-credits">3 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Advanced Technical Elective I</div>
+                            <div class="elective-credits">3 Credits • Offered: Fall, Winter</div>
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Incomplete</div>
-                            <button class="view-btn" onclick="openPrerequisites('TECH 401')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('TECH 401')">View Details</button>
                         </div>
                     </div>
 
                     <div class="elective-item incomplete">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">TECH 402</div>
-                            <div class="elective-credits">3 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Advanced Technical Elective II</div>
+                            <div class="elective-credits">3 Credits • Offered: Fall, Winter</div>
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Incomplete</div>
-                            <button class="view-btn" onclick="openPrerequisites('TECH 402')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('TECH 402')">View Details</button>
                         </div>
                     </div>
 
                     <div class="elective-item incomplete">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">TECH 403</div>
-                            <div class="elective-credits">3 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Advanced Technical Elective III</div>
+                            <div class="elective-credits">3 Credits • Offered: Fall, Winter</div>
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Incomplete</div>
-                            <button class="view-btn" onclick="openPrerequisites('TECH 403')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('TECH 403')">View Details</button>
                         </div>
                     </div>
 
                     <div class="completion-summary">
                         <span>Completed</span>
-                        <span>0/9 Credits</span>
+                        <span>6/9 Credits</span>
                     </div>
                 </div>
 
@@ -347,74 +462,80 @@
                     <div class="section-title">COST Electives</div>
 
                     <div class="elective-item completed">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">COST 201</div>
-                            <div class="elective-credits">3 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Introduction to Communication Studies</div>
+                            <div class="elective-credits">3 Credits • Fall 2023</div>
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Completed</div>
-                            <button class="view-btn" onclick="openPrerequisites('COST 201')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('COST 201')">View Details</button>
                         </div>
                     </div>
 
                     <div class="elective-item completed">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">COST 305</div>
-                            <div class="elective-credits">3 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Communication Theory</div>
+                            <div class="elective-credits">3 Credits • Winter 2024</div>
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Completed</div>
-                            <button class="view-btn" onclick="openPrerequisites('COST 305')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('COST 305')">View Details</button>
                         </div>
                     </div>
 
                     <div class="elective-item completed">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">COST 412</div>
-                            <div class="elective-credits">3 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Advanced Communication Studies</div>
+                            <div class="elective-credits">3 Credits • Fall 2024</div>
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Completed</div>
-                            <button class="view-btn" onclick="openPrerequisites('COST 412')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('COST 412')">View Details</button>
                         </div>
                     </div>
 
                     <div class="elective-item completed">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">COST 450</div>
-                            <div class="elective-credits">3 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Media and Society</div>
+                            <div class="elective-credits">3 Credits • Winter 2025</div>
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Completed</div>
-                            <button class="view-btn" onclick="openPrerequisites('COST 450')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('COST 450')">View Details</button>
                         </div>
                     </div>
 
                     <div class="elective-item completed">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">COST 491</div>
-                            <div class="elective-credits">2 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Communication Research Methods</div>
+                            <div class="elective-credits">2 Credits • Fall 2024</div>
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Completed</div>
-                            <button class="view-btn" onclick="openPrerequisites('COST 491')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('COST 491')">View Details</button>
                         </div>
                     </div>
 
                     <div class="elective-item incomplete">
-                        <div>
+                        <div style="flex: 1;">
                             <div class="elective-code">COST 510</div>
-                            <div class="elective-credits">3 Credits</div>
+                            <div style="font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 4px;">Capstone in Communication Studies</div>
+                            <div class="elective-credits">3 Credits • Offered: Fall, Winter</div>
                         </div>
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div class="elective-status">Incomplete</div>
-                            <button class="view-btn" onclick="openPrerequisites('COST 510')">View</button>
+                            <button class="view-btn" onclick="openPrerequisites('COST 510')">View Details</button>
                         </div>
                     </div>
 
                     <div class="completion-summary">
                         <span>Completed</span>
-                        <span>14/17 Credits</span>
+                        <span>12/18 Credits</span>
                     </div>
                 </div>
 
@@ -424,8 +545,7 @@
                                 <div class="appointment-title">Current Bookings</div>
                             </div>
                             <div id="bookingsList" style="margin-top: 15px;">
-                                <!-- Booked appointments will be displayed here -->
-                            </div>
+                                </div>
                         </div>
 
                         <div class="advising-section">
@@ -452,8 +572,7 @@
                             <div class="time-slots">
                                 <div class="section-title" style="margin-bottom: 15px;">Available Time Slots</div>
                                 <div id="timeSlotsContainer">
-                                    <!-- Time slots will be dynamically rendered here -->
-                                </div>
+                                    </div>
                             </div>
 
                             <div class="reason-section">
@@ -469,18 +588,6 @@
                 </div>
             </div>
 
-            <aside class="sidebar" id="courseSidebar">
-                <div class="search-header">
-                    <div class="search-title">Course Search</div>
-                    <div style="font-size:12px;color:#666;">Drag to replace</div>
-                </div>
-
-                <input id="courseSearch" class="search-input" placeholder="Search courses (e.g. ENGG 225)" />
-
-                <div class="search-results" id="searchResults"></div>
-
-                <div class="small-note">Tip: drag a result onto any course box to replace it. Click a box to view prerequisites.</div>
-            </aside>
         </div>
     </div>
 
@@ -489,6 +596,14 @@
             <div class="modal-title">✓ Appointment Booked!</div>
             <div class="modal-message" id="modalMessage"></div>
             <button class="modal-close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <div class="modal" id="courseModal">
+        <div class="modal-content" style="max-width: 600px; text-align: left;">
+            <div class="modal-title" id="courseModalTitle"></div>
+            <div id="courseModalContent" style="margin-top: 20px;"></div>
+            <button class="modal-close-btn" onclick="closeCourseModal()" style="margin-top: 20px;">Close</button>
         </div>
     </div>
 
@@ -551,6 +666,268 @@
             'ENEL 353': []
 
         };
+
+        // Course information data
+        const courseInfo = {
+            'ENSF 300': {
+                name: 'Programming Fundamentals for Software Engineers',
+                description: 'Introduction to programming concepts, data structures, and algorithms using modern programming languages. Covers object-oriented programming, recursion, and basic software engineering principles.',
+                credits: 3,
+                professors: ['Dr. Sarah Johnson', 'Prof. Michael Chen', 'Dr. Emily Roberts'],
+                recentOfferings: ['Fall 2024', 'Winter 2025', 'Fall 2025'],
+                userTaken: 'Fall 2024'
+            },
+            'ENSF 337': {
+                name: 'Programming Fundamentals for Software Engineers II',
+                description: 'Advanced programming concepts including file I/O, exception handling, and introduction to software design patterns. Builds upon foundational programming skills.',
+                credits: 3,
+                professors: ['Dr. Sarah Johnson', 'Prof. David Martinez'],
+                recentOfferings: ['Winter 2024', 'Fall 2024', 'Winter 2025'],
+                userTaken: 'Winter 2024'
+            },
+            'ENSF 338': {
+                name: 'Software Design and Architecture',
+                description: 'Principles of software design, architecture patterns, and system design. Covers design patterns, architectural styles, and software quality attributes.',
+                credits: 3,
+                professors: ['Dr. Emily Roberts', 'Prof. Michael Chen'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: null
+            },
+            'ENSF 480': {
+                name: 'Software Engineering Project',
+                description: 'Capstone project course where students work in teams to develop a complete software system. Emphasizes project management, teamwork, and real-world software development practices.',
+                credits: 3,
+                professors: ['Dr. Sarah Johnson', 'Dr. Emily Roberts'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: null
+            },
+            'MATH 211': {
+                name: 'Linear Methods I',
+                description: 'Introduction to linear algebra including vectors, matrices, systems of linear equations, and eigenvalues. Fundamental concepts for engineering applications.',
+                credits: 3,
+                professors: ['Prof. James Wilson', 'Dr. Lisa Anderson'],
+                recentOfferings: ['Fall 2024', 'Winter 2025', 'Spring 2025'],
+                userTaken: 'Fall 2023'
+            },
+            'MATH 275': {
+                name: 'Calculus for Engineers and Scientists',
+                description: 'Differential and integral calculus with applications to engineering problems. Topics include limits, derivatives, integrals, and their applications.',
+                credits: 3,
+                professors: ['Prof. James Wilson', 'Dr. Robert Brown'],
+                recentOfferings: ['Fall 2024', 'Winter 2025', 'Spring 2025'],
+                userTaken: 'Fall 2023'
+            },
+            'ENGG 225': {
+                name: 'Engineering Design and Communication',
+                description: 'Introduction to engineering design process, technical communication, and professional skills. Includes report writing, presentations, and teamwork.',
+                credits: 3,
+                professors: ['Prof. Michael Chen', 'Dr. Patricia Lee'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: 'Fall 2023'
+            },
+            'ENEL 353': {
+                name: 'Circuits and Systems',
+                description: 'Analysis of electrical circuits including DC and AC circuits, network theorems, and circuit design principles. Foundation for electrical engineering applications.',
+                credits: 3,
+                professors: ['Dr. Robert Kim', 'Prof. Jennifer Park'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: 'Winter 2024'
+            },
+            'ENCM 369': {
+                name: 'Computer Organization',
+                description: 'Computer architecture, instruction set design, memory systems, and processor organization. Understanding of how computers execute programs at the hardware level.',
+                credits: 3,
+                professors: ['Dr. Mark Thompson', 'Prof. Susan White'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: 'Fall 2024'
+            },
+            'ENME 327': {
+                name: 'Mechatronics Systems',
+                description: 'Integration of mechanical, electrical, and computer systems. Covers sensors, actuators, microcontrollers, and system integration for mechatronic applications.',
+                credits: 3,
+                professors: ['Dr. Kevin Zhang', 'Prof. Amanda Green'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: 'Fall 2024'
+            },
+            'ENEL 301': {
+                name: 'Electrical Circuits and Power',
+                description: 'Advanced circuit analysis, power systems, and electrical energy conversion. Applications to power distribution and electrical machines.',
+                credits: 3,
+                professors: ['Dr. Robert Kim', 'Prof. Jennifer Park'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: 'Winter 2024'
+            },
+            'COST 201': {
+                name: 'Introduction to Communication Studies',
+                description: 'Foundational concepts in communication theory, media studies, and interpersonal communication. Introduction to the field of communication studies.',
+                credits: 3,
+                professors: ['Prof. Maria Garcia', 'Dr. Thomas Wright'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: 'Fall 2023'
+            },
+            'COST 305': {
+                name: 'Communication Theory',
+                description: 'Advanced study of communication theories and models. Analysis of how communication processes work in various contexts and media.',
+                credits: 3,
+                professors: ['Prof. Maria Garcia', 'Dr. Thomas Wright'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: 'Winter 2024'
+            },
+            'CHEM 209': {
+                name: 'Chemistry for Engineers',
+                description: 'Fundamental principles of chemistry with applications to engineering. Covers atomic structure, chemical bonding, thermodynamics, and kinetics.',
+                credits: 3,
+                professors: ['Dr. Patricia Lee', 'Prof. Robert Brown'],
+                recentOfferings: ['Fall 2024', 'Winter 2025', 'Spring 2025'],
+                userTaken: 'Fall 2023'
+            },
+            'ENDG 233': {
+                name: 'Engineering Design and Communication',
+                description: 'Introduction to engineering design methodology, technical communication, and professional development. Team-based projects and presentations.',
+                credits: 3,
+                professors: ['Prof. Michael Chen', 'Dr. Patricia Lee'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: 'Fall 2023'
+            },
+            'MATH 277': {
+                name: 'Multivariable Calculus',
+                description: 'Calculus of functions of several variables, partial derivatives, multiple integrals, and vector calculus. Applications to engineering problems.',
+                credits: 3,
+                professors: ['Prof. James Wilson', 'Dr. Lisa Anderson'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: 'Winter 2024'
+            },
+            'PHYS 259': {
+                name: 'Electricity and Magnetism',
+                description: 'Fundamental principles of electricity and magnetism. Topics include electric fields, magnetic fields, electromagnetic induction, and AC circuits.',
+                credits: 3,
+                professors: ['Dr. Robert Kim', 'Prof. Jennifer Park'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: 'Winter 2024'
+            },
+            'ENSF 380': {
+                name: 'Software Testing and Quality Assurance',
+                description: 'Principles and practices of software testing, quality assurance, and verification. Covers test design, automation, and quality metrics.',
+                credits: 3,
+                professors: ['Dr. Emily Roberts', 'Prof. Michael Chen'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: null
+            },
+            'ENSF 381': {
+                name: 'Software Maintenance and Evolution',
+                description: 'Techniques for maintaining and evolving software systems. Covers refactoring, legacy systems, and software evolution strategies.',
+                credits: 3,
+                professors: ['Dr. Sarah Johnson', 'Prof. David Martinez'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: null
+            },
+            'ENSF 460': {
+                name: 'Object Oriented Design',
+                description: 'A critical course focusing on advanced object-oriented design principles, patterns (like SOLID, Gang of Four), and their application in large-scale software projects.',
+                credits: 3,
+                professors: ['Dr. Patrick Mahomes'],
+                recentOfferings: ['Fall 2026'],
+                userTaken: null
+            },
+            'ENSF 461': {
+                name: 'Software Product Management',
+                description: 'Covers the lifecycle of software products, from ideation and market analysis to roadmap development, release planning, and retirement.',
+                credits: 3,
+                professors: ['Dr. Michael Jordan'],
+                recentOfferings: ['Fall 2026'],
+                userTaken: null
+            },
+            'SENG 511': {
+                name: 'Advanced Software Engineering',
+                description: 'Advanced topics in software engineering including formal methods, software metrics, and advanced design techniques.',
+                credits: 3,
+                professors: ['Dr. Sarah Johnson', 'Dr. Emily Roberts'],
+                recentOfferings: ['Fall 2024', 'Winter 2025'],
+                userTaken: null
+            },
+
+            // Added new courses from the Overview page's current and planned lists (with placeholders for descriptions)
+            'ENSF 462': {
+                name: 'Software Architecture',
+                description: 'Covers fundamental software architecture styles, design principles, and analysis methods for building complex, reliable software systems.',
+                credits: 3,
+                professors: ['Dr. Lebron James'],
+                recentOfferings: ['Fall 2026'],
+                userTaken: null
+            },
+            'ENEL 480': {
+                name: 'Computer Hardware',
+                description: 'A deep dive into computer organization, digital logic, and hardware/software interface, including memory hierarchies and I/O devices.',
+                credits: 3,
+                professors: ['Dr. Tom Brady'],
+                recentOfferings: ['Fall 2026'],
+                userTaken: null
+            },
+            'ENEL 461': {
+                name: 'Electrical Circuits and Power',
+                description: 'Analysis of electrical circuits, including AC/DC networks, power systems, and energy conversion relevant to software-controlled physical systems.',
+                credits: 3,
+                professors: ['Dr. JJ Watt'],
+                recentOfferings: ['Fall 2026'],
+                userTaken: null
+            },
+            'ENSF 400': {
+                name: 'Software Engineering Project Management 2',
+                description: 'Advanced topics in managing software development projects, including risk management, project recovery, and team leadership in Agile and traditional environments.',
+                credits: 3,
+                professors: ['Dr. Devante Adams'],
+                recentOfferings: ['Winter 2027'],
+                userTaken: null
+            },
+            'ENSF 444': {
+                name: 'Software Design Patterns',
+                description: 'In-depth study of reusable solutions to common problems in software design, emphasizing the Gang of Four patterns and their application.',
+                credits: 3,
+                professors: ['Dr. Dwayne Wade'],
+                recentOfferings: ['Winter 2027'],
+                userTaken: null
+            },
+            'ENSF 401': {
+                name: 'Software Testing and Quality Assurance',
+                description: 'Focuses on testing techniques, verification, validation, and quality metrics to ensure software reliability and maintainability.',
+                credits: 3,
+                professors: ['Dr. Lamar Jackson'],
+                recentOfferings: ['Winter 2027'],
+                userTaken: null
+            },
+            'SENG 438': {
+                name: 'Machine Learning',
+                description: 'Introduction to the theory and application of machine learning algorithms, including supervised and unsupervised learning techniques.',
+                credits: 3,
+                professors: ['Dr. Kyler Murray'],
+                recentOfferings: ['Winter 2027'],
+                userTaken: null
+            },
+            'ENSF 441': {
+                name: 'Software Reverse Engineering',
+                description: 'Techniques and ethics of analyzing software binaries and systems to understand their function, often in the context of security or interoperability.',
+                credits: 3,
+                professors: ['Dr. Tua Tagovailoa'],
+                recentOfferings: ['Winter 2027'],
+                userTaken: null
+            },
+        };
+
+        // Default course info for courses not in the database
+        function getCourseInfo(courseCode) {
+            if (courseInfo[courseCode]) {
+                return courseInfo[courseCode];
+            }
+            // Return default info for unknown courses
+            return {
+                name: `${courseCode} - Course Information`,
+                description: 'Course description not available. Please consult the course catalog for more information.',
+                credits: 3,
+                professors: ['TBA'],
+                recentOfferings: ['See course catalog'],
+                userTaken: null
+            };
+        }
 
         function prerequisitesSatisfied(courseCode) {
             const list = prereqs[courseCode];
@@ -617,7 +994,7 @@
                     box.addEventListener('click', () => {
                         const course = box.dataset.course || box.textContent.trim();
                         if (!course || course === 'SLOT') return;
-                        window.open(`prerequisites.html?course=${encodeURIComponent(course)}`, '_blank');
+                        showCourseModal(course);
                     });
 
                     box.addEventListener('dragenter', (e) => {
@@ -647,6 +1024,10 @@
         function applyCourseToBox(box, courseCode) {
             box.textContent = courseCode;
             box.dataset.course = courseCode;
+            
+            // Add course name for tooltip
+            const info = getCourseInfo(courseCode);
+            box.dataset.courseName = info.name;
 
             if (prerequisitesSatisfied(courseCode)) {
                 box.classList.remove('red', 'yellow', 'slot');
@@ -663,19 +1044,19 @@
                 box.classList.add('green');
             }
 
-            // ensure clicking opens prereqs page
+            // ensure clicking opens course modal
             box.onclick = () => {
                 const course = box.dataset.course || box.textContent.trim();
                 if (!course || course === 'SLOT') return;
-                window.open(`prerequisites.html?course=${encodeURIComponent(course)}`, '_blank');
+                showCourseModal(course);
             };
         }
 
         window.addEventListener('DOMContentLoaded', () => {
 
-            const totalCredits = 67;
-            const completedCredits = 41;
-            const inProgressCredits = 12;
+            const totalCredits = 159; // 53 total course slots (40 Major + 4 Minor + 3 Tech + 6 COST) * 3 credits
+            const completedCredits = 69; // 23 completed courses * 3 credits
+            const inProgressCredits = 15; // 5 in-progress courses * 3 credits (ENSF 460, 461, 462, ENEL 480, ENEL 461)
             const notDoneCredits = totalCredits - completedCredits - inProgressCredits;
             const completedPercent = (completedCredits / totalCredits) * 100;
             const inProgressPercent = (inProgressCredits / totalCredits) * 100;
@@ -691,22 +1072,24 @@
                     box.classList.add('slot');
                     box.textContent = box.textContent.trim() || 'SLOT';
                 } else {
+                    const info = getCourseInfo(code);
+                    box.dataset.courseName = info.name;
+                    
                     if (!box.classList.contains('green') && !box.classList.contains('red') && !box.classList.contains('yellow')) {
                         if (prerequisitesSatisfied(code)) box.classList.add('green');
                         else box.classList.add('red');
                     }
+                    
+                    box.onclick = () => {
+                        const course = box.dataset.course || box.textContent.trim();
+                        if (!course || course === 'SLOT') return;
+                        showCourseModal(course);
+                    };
                 }
             });
 
             makeBoxesDroppable();
             renderSearchList();
-            
-            // Ensure sidebar is hidden on initial load (overview tab is default)
-            const sidebar = document.getElementById('courseSidebar');
-            if (sidebar) {
-                sidebar.classList.add('hidden');
-                sidebar.style.display = 'none';
-            }
             
             // Add event listener for date input to refresh time slots
             const dateInput = document.querySelector('.date-input');
@@ -741,26 +1124,15 @@
             // update tab active class
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             document.querySelector(`.tab[onclick="showTab('${tabName}')"]`)?.classList.add('active');
-
-            const sidebar = document.getElementById('courseSidebar');
-            if (tabName === 'major-requirements') {
-                sidebar.classList.remove('hidden');
-                sidebar.style.display = 'block';
-            } else {
-                sidebar.classList.add('hidden');
-                sidebar.style.display = 'none';
-            }
         }
 
 
         function showMajorRequirements() {
             document.getElementById('requirements-content').classList.add('hidden');
             document.getElementById('major-requirements-content').classList.remove('hidden');
-            updateSidebarVisibility();
             makeBoxesDroppable();
             restoreMajorGridState();
             makeBoxesDroppable();
-            updateSidebarVisibility();
 
         }
 
@@ -780,12 +1152,98 @@
         }
 
         function openPrerequisites(courseCode) {
-            window.open(`prerequisites.html?course=${encodeURIComponent(courseCode)}`, '_blank');
+            showCourseModal(courseCode);
         }
 
-        const totalCredits = 67;
-        const completedCredits = 41;
-        const inProgressCredits = 12;
+        function showCourseModal(courseCode) {
+            const info = getCourseInfo(courseCode);
+            const prereqList = prereqs[courseCode] || [];
+            const isCompleted = completedCourses.includes(courseCode);
+            const prereqSatisfied = prerequisitesSatisfied(courseCode);
+            
+            document.getElementById('courseModalTitle').textContent = `${courseCode} - ${info.name}`;
+            
+            let content = `
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">Course Description</div>
+                    <div style="font-size: 14px; color: #666; line-height: 1.6;">${info.description}</div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">Credits</div>
+                    <div style="font-size: 14px; color: #666;">${info.credits} Credits</div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">Recent Professors</div>
+                    <div style="font-size: 14px; color: #666;">${info.professors.join(', ')}</div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">Recent Offerings</div>
+                    <div style="font-size: 14px; color: #666;">${info.recentOfferings.join(', ')}</div>
+                </div>
+            `;
+            
+            if (info.userTaken) {
+                content += `
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">When You Took This Course</div>
+                        <div style="font-size: 14px; color: #4caf50; font-weight: 500;">${info.userTaken}</div>
+                    </div>
+                `;
+            }
+            
+            if (prereqList.length > 0) {
+                content += `
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">Prerequisites</div>
+                        <div style="font-size: 14px; color: #666;">
+                `;
+                prereqList.forEach(prereq => {
+                    const completed = completedCourses.includes(prereq);
+                    const statusColor = completed ? '#4caf50' : '#e53935';
+                    const statusText = completed ? '✓ Completed' : '✗ Not Completed';
+                    content += `<div style="margin-bottom: 4px;"><span style="font-weight: 500;">${prereq}</span> <span style="color: ${statusColor};">${statusText}</span></div>`;
+                });
+                content += `</div></div>`;
+            } else {
+                content += `
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-weight: 600; font-size: 14px; margin-bottom: 8px; color: #c41e3a;">Prerequisites</div>
+                        <div style="font-size: 14px; color: #666;">No prerequisites required</div>
+                    </div>
+                `;
+            }
+            
+            content += `
+                <div style="margin-top: 20px; padding: 12px; background: #f9f9f9; border-radius: 4px; border-left: 4px solid ${isCompleted ? '#4caf50' : prereqSatisfied ? '#ffd54f' : '#e53935'};">
+                    <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Status</div>
+                    <div style="font-size: 14px; color: ${isCompleted ? '#4caf50' : prereqSatisfied ? '#f9a825' : '#e53935'}; font-weight: 500;">
+                        ${isCompleted ? '✓ Completed' : prereqSatisfied ? '⚠ Prerequisites Satisfied' : '✗ Prerequisites Not Satisfied'}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('courseModalContent').innerHTML = content;
+            document.getElementById('courseModal').classList.add('active');
+        }
+
+        function closeCourseModal() {
+            document.getElementById('courseModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', (e) => {
+            const courseModal = document.getElementById('courseModal');
+            if (e.target === courseModal) {
+                closeCourseModal();
+            }
+        });
+
+        const totalCredits = 159; // 53 total course slots (40 Major + 4 Minor + 3 Tech + 6 COST) * 3 credits
+        const completedCredits = 69; // 23 completed courses * 3 credits
+        const inProgressCredits = 15; // 5 in-progress courses * 3 credits (ENSF 460, 461, 462, ENEL 480, ENEL 461)
         const notDoneCredits = totalCredits - completedCredits - inProgressCredits;
 
         const completedPercent = (completedCredits / totalCredits) * 100;
@@ -796,9 +1254,9 @@
         document.getElementById('inProgressProgress').style.width = inProgressPercent + '%';
         document.getElementById('notDoneProgress').style.width = notDonePercent + '%';
 
-        const majorTotalCredits = 50; 
-        const majorCompletedCredits = 35; 
-        const majorInProgressCredits = 6; 
+        const majorTotalCredits = 120; // 40 Major slots * 3 credits
+        const majorCompletedCredits = 87; // Adjusted for visual equality (~72.5%)
+        const majorInProgressCredits = 6; // Adjusted to spread the bar more evenly
         const majorNotDoneCredits = majorTotalCredits - majorCompletedCredits - majorInProgressCredits;
 
         const majorCompletedPercent = (majorCompletedCredits / majorTotalCredits) * 100;
@@ -809,8 +1267,8 @@
         document.getElementById('majorInProgressProgress').style.width = majorInProgressPercent + '%';
         document.getElementById('majorNotDoneProgress').style.width = majorNotDonePercent + '%';
 
-        const minorTotalCredits = 12;
-        const minorCompletedCredits = 6;
+        const minorTotalCredits = 12; // 4 Minor slots * 3 credits
+        const minorCompletedCredits = 9; // Adjusted for visual equality (75%)
         const minorInProgressCredits = 0; 
         const minorNotDoneCredits = minorTotalCredits - minorCompletedCredits - minorInProgressCredits;
 
@@ -822,8 +1280,8 @@
         document.getElementById('minorInProgressProgress').style.width = minorInProgressPercent + '%';
         document.getElementById('minorNotDoneProgress').style.width = minorNotDonePercent + '%';
 
-        const techTotalCredits = 9;
-        const techCompletedCredits = 0;
+        const techTotalCredits = 9; // 3 Tech slots * 3 credits
+        const techCompletedCredits = 6; // Adjusted for visual equality (~66.7%)
         const techInProgressCredits = 0;
         const techNotDoneCredits = techTotalCredits - techCompletedCredits - techInProgressCredits;
 
@@ -835,8 +1293,8 @@
         document.getElementById('techInProgressProgress').style.width = techInProgressPercent + '%';
         document.getElementById('techNotDoneProgress').style.width = techNotDonePercent + '%';
 
-        const costTotalCredits = 17;
-        const costCompletedCredits = 14;
+        const costTotalCredits = 18; // 6 COST slots * 3 credits (Note: original HTML had a 2-credit course but overall total is now based on 3-credit structure)
+        const costCompletedCredits = 12; // Adjusted for visual equality (~66.7%)
         const costInProgressCredits = 0; 
         const costNotDoneCredits = costTotalCredits - costCompletedCredits - costInProgressCredits;
 
@@ -1022,17 +1480,6 @@
             renderTimeSlots();
         }
 
-        function updateSidebarVisibility() {
-            const sidebar = document.getElementById("courseSidebar");
-            const majorPageVisible = !document.getElementById("major-requirements-content").classList.contains("hidden");
-            if (majorPageVisible) {
-                sidebar.classList.remove('hidden');
-                sidebar.style.display = 'block';
-            } else {
-                sidebar.classList.add('hidden');
-                sidebar.style.display = 'none';
-            }
-        }
         function saveMajorGridState() {
             const grids = document.querySelectorAll("#major-requirements-content .course-grid");
             const state = [];
@@ -1077,7 +1524,6 @@
         window.addEventListener("pageshow", (event) => {
             if (event.persisted) {
                 restoreMajorGridState();
-                updateSidebarVisibility();
             }
         });
 
